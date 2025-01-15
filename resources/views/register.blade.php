@@ -1,0 +1,3 @@
+@component('layouts.register')
+    
+@endcomponent
