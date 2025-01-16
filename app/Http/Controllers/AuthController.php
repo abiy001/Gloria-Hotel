@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class AuthController extends Controller
 {
@@ -31,11 +32,16 @@ class AuthController extends Controller
        if(Auth::attempt($data)) {
            if(Auth::user()->role == 'admin') {
                $request->session()->regenerate();
-               return redirect() -> route('layouts/register');
+               session::flash('success','login successfully');
+               return redirect() -> route('dashboard');
             } else {
-            $request->session()->regenerate();
+                $request->session()->regenerate();
+                session::flash('success','login successfully');
             return redirect() -> route('home');
         }
+       } else {
+        session::flash('error', 'password or email is wrong');
+        return redirect() -> route('home');
        }
     }
 }
