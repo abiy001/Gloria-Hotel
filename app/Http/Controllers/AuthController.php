@@ -23,7 +23,7 @@ class AuthController extends Controller
         $user -> role = 'user';
         $user-> save();
         // dd($user);
-        return redirect() -> route('layouts/navbar');
+        return redirect() -> route('home');
     }
 
     function login(Request $request) {
@@ -37,11 +37,20 @@ class AuthController extends Controller
             } else {
                 $request->session()->regenerate();
                 session::flash('success','login successfully');
-            return redirect() -> route('home');
+                return redirect() -> route('home');
         }
        } else {
         session::flash('error', 'password or email is wrong');
         return redirect() -> route('home');
        }
+    }
+
+
+    function logout(Request $request) {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        session::flash('success','logout successfully');
+        return redirect() -> route('home');
     }
 }

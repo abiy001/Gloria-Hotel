@@ -1,3 +1,28 @@
+#navbar_dropdown {
+    position: absolute;
+    display: hidden;
+    right: -100%;
+    opacity: 0;
+    position: fixed;
+    top: 20%;
+}
+
+#navbar_dropdown.active {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    right: 0%;
+    top: 75px;
+    opacity: 100;
+    margin-right: 5px;
+    z-index: 70;
+    transition: 0.2s;
+    -webkit-transition: 0.2s;
+    -moz-transition: 0.2s;
+    -ms-transition: 0.2s;
+    -o-transition: 0.2s;
+}
+
 #login-form {
     display: hidden;
     right: -100%;

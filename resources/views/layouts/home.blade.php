@@ -11,18 +11,9 @@
 
 </head>
 <body>
-    @if (session('error')) 
-    <script>
-        Swal.fire({
-  position: "top-center",
-  icon: "error",
-  title: "{{ session('error') }}",
-  showConfirmButton: false,
-  timer: 1500
-});
-    </script>
-    
-@endif
+ @component('fragments.toast')
+     
+ @endcomponent
 
     <div class=" w-full">
         @component('layouts.navbar')
