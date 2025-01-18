@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RoomController;
 use App\Http\Middleware\AuthAdmin;
 use App\Http\Middleware\AuthUser;
 use Illuminate\Support\Facades\Auth;
@@ -28,6 +29,8 @@ Route::get('/logout', [AuthController::class, 'logout']) -> name('logout');
 
 Route::middleware(['auth',AuthAdmin :: class])->group(function () {
     Route::get('/dashboard', [AdminController::class, 'index'])  -> name('dashboard');
+    Route::post('/room/submit', [RoomController::class, 'post']) -> name('room.submit');
+
 });
 
 Route::middleware(['auth',AuthUser :: class])->group(function () {

@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->integer('room_number');
             $table->string('room_type');
-            $table->string('price_per_day');
-            $table->string('room_status');
+            $table->integer('price_per_day');
+            $table->string('room_status') -> default('available'); ;
             $table->string('room_image');
             $table->string('room_description');
             $table->timestamps();
@@ -28,6 +28,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('room');
+        Schema::dropIfExists('rooms');
     }
 };
+
+

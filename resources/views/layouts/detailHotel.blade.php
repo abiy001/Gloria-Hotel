@@ -15,18 +15,18 @@
     <style>
         #show-all-btn :hover{
             background-color: {{ env('COLOR_1') }};
-            color:{{ env('COLOR_2') }}
+            color:{{ env('COLOR_2') }};
         }
 
         .scrollbar-hide::-webkit-scrollbar {
-    display: none;
-}
+            display: none;
+        }
 
 /* For IE, Edge and Firefox */
-.scrollbar-hide {
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
-}
+        .scrollbar-hide {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
     </style>
     <link rel="stylesheet" href="css/detailHotel.css">
 </head>
@@ -38,7 +38,7 @@
  @component('layouts.navbar')
  @endcomponent
  
- <div class="h-[300px] overflow-y-auto scrollbar-hide min-h-screen">
+ <div class="h-[300px] overflow-y-scroll scrollbar-hide min-h-screen scrollbar-hide ">
 
      <div class=" w-full">
          <div class=" w-full ">

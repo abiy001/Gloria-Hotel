@@ -1,6 +1,6 @@
-<div class=" flex flex-col  min-h-full justify-between  shadow-inner">
+<div class=" flex flex-col  min-h-full justify-between  shadow-inner min-w-[400px]">
     <div class="">
-        <img class="w-[400px] h-[200px]" src="{{ url ($img) }}" alt="">
+        <img class=" w-full h-[300px]" src="{{ url ($img) }}" alt="">
     </div>
 
     <div class=" flex flex-col px-3 py-3">
