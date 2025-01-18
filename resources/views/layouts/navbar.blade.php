@@ -1,17 +1,45 @@
-<nav class=" relative flex justify-between px-4 items-center py-3 " style="background-color: {{ env('COLOR_1') }};  color: {{ env('COLOR_2') }}">
+<nav class="z-50 relative flex justify-between px-4 items-center py-3 " style="background-color: {{ env('COLOR_1') }};  color: {{ env('COLOR_2') }}">
+    <div id="menu" class=" 2xl:hidden xl:hidden lg:hidden flex text-slate-50 text-2xl">
+        <i class="ph-bold ph-list"></i>
+    </div>
+    
     <div>
-        <h1 class=" font-bold text-4xl">Hotel</h1>
+        <h1 class=" font-bold text-3xl">GLORIA HOTEL</h1>
     </div>
 
-    <div class=" flex gap-4  text-lg font-semibold">
-        <a href="/" class="hover:bg-slate-50 hover:bg-opacity-10 px-2 py-2 rounded-lg">Home</a>
-        <a href="/" class="hover:bg-slate-50 hover:bg-opacity-10 px-2 py-2 rounded-lg">Hotels</a>
-        <a href="/" class="hover:bg-slate-50 hover:bg-opacity-10 px-2 py-2 rounded-lg">Wedding</a>
+    <div id="navbar-sidebar" class="2xl:hidden xl:hidden lg:hidden flex flex-col gap-4 text-lg font-semibold w-[300px] p-4 justify-center text-slate-50" style="background-color: {{ env('COLOR_3') }}">
+        <a href="/" class="hover:bg-slate-50 hover:bg-opacity-10 px-4 flex justify-start items-center  py-3 ">HOME</a>
+        <a href="/" class="hover:bg-slate-50 hover:bg-opacity-10 px-4 flex justify-start items-center  py-3 ">HOTELS</a>
+        <a href="/" class="hover:bg-slate-50 hover:bg-opacity-10 px-4 flex justify-start items-center  py-3 ">OFFERS</a>
+        <a href="/" class="hover:bg-slate-50 hover:bg-opacity-10 px-4 flex justify-start items-center  py-3">WEDDING</a>
+        <div id="booking2" class=" flex justify-center font-semibold hover:cursor-pointer hover:bg-slate-50 hover:bg-opacity-20 text-lg items-center px-3 border border-white py-3" style="color:{{ env('COLOR_2') }}">
+            <h1>BOOKING NOW</h1>
+        </div>
     </div>
 
-    <div id="account" class=" hover:cursor-pointer text-slate-50 font-bold px-2 py-3 rounded-md" style="background-color: {{ env('COLOR_3') }}">
-        <h1>Akun</h1>
+    <div class=" 2xl:flex xl:flex lg:flex  hidden gap-4 text-lg font-semibold">
+        <a href="/" class="hover:bg-slate-50 hover:bg-opacity-10 px-2 py-2 rounded-lg">HOME</a>
+        <a href="/" class="hover:bg-slate-50 hover:bg-opacity-10 px-2 py-2 rounded-lg">HOTELS</a>
+        <a href="/" class="hover:bg-slate-50 hover:bg-opacity-10 px-2 py-2 rounded-lg">OFFERS</a>
+        <a href="/" class="hover:bg-slate-50 hover:bg-opacity-10 px-2 py-2 rounded-lg">WEDDING</a>
     </div>
+    
+
+
+
+    <div class=" flex flex-row items-center gap-3">
+        <div id="booking1" class=" 2xl:flex xl:flex lg:flex hidden justify-center font-semibold hover:cursor-pointer hover:bg-slate-50 hover:bg-opacity-20 text-lg items-center px-3 border border-white py-3" style="color:{{ env('COLOR_2') }}">
+            <h1>BOOKING NOW</h1>
+        </div>
+
+        <div id="account" class=" hover:cursor-pointer text-slate-50 font-bold px-2 py-3 rounded-md" style="background-color: {{ env('COLOR_2') }}">
+            <img class=" w-10" src="{{ url('/images/logo-hotel/logo-hotel.png') }}" alt="">
+        </div>
+    </div>
+
+    @component('fragments.checkRoomNav')
+        
+    @endcomponent
 
     @if (! Auth::user())
         

@@ -1,4 +1,4 @@
-<div id="register-form" class=" bg-slate-50 z-50 text-slate-900 flex flex-col gap-4 bg-opacity-30 h-screen w-full py-4 ">
+<div id="register-form" class=" fixed bg-slate-900 z-50 text-slate-900 flex flex-col gap-4 bg-opacity-30 h-full w-full py-4 ">
     <form method="post" action="{{ route('register.submit') }}" class="bg-slate-50 p-4 w-[340px] ">
         @csrf
         
@@ -10,6 +10,11 @@
         <div class=" flex flex-col gap-2">
             <label class=" font-semibold text-slate-900">Name</label>
             <input type="text" name="name" class=" w-full px-2 py-2 rounded-md border border-slate-900">
+        </div>
+
+        <div class=" flex flex-col gap-2">
+            <label class=" font-semibold text-slate-900">No HP</label>
+            <input type="number" name="nohp" class=" w-full px-2 py-2 rounded-md border border-slate-900">
         </div>
 
         <div class=" flex flex-col gap-2">

@@ -18,6 +18,10 @@ Route::get('/detail-hotel', function () {
     return view('layouts/detailHotel');
 }) -> name('detailHotel');
 
+Route::get('/detail-room', function () {
+    return view('layouts/detailRoom');
+}) -> name('detailRoom');
+
 Route::get('/login', [LoginController::class,'index']) -> name('login');
 
 Route::get('/logout', [AuthController::class, 'logout']) -> name('logout');

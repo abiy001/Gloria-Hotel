@@ -21,8 +21,10 @@ class AuthController extends Controller
         $user -> email = $request -> email;
         $user -> password = bcrypt($request -> password);
         $user -> role = 'user';
+        $user -> nohp = $request -> nohp;
         $user-> save();
         // dd($user);
+        session::flash('success','register successfully');
         return redirect() -> route('home');
     }
 

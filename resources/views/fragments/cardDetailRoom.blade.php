@@ -20,7 +20,7 @@
                 <h1>IDR 650,025 net</h1>
             </div>
 
-            <div class=" flex justify-center items-center px-3 py-1" style="background-color: {{ env('COLOR_3') }}; color:{{ env('COLOR_2') }}">
+            <div class=" flex justify-center items-center px-3 py-2" style="background-color: {{ env('COLOR_3') }}; color:{{ env('COLOR_2') }}">
                 <h1>BOOK NOW</h1>
             </div>
         </div>

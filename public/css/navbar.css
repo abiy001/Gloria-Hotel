@@ -1,3 +1,53 @@
+
+#navbar-sidebar {
+    display: hidden;
+    position: fixed;
+    left: -100%;
+    transition: 0.2s;
+    -webkit-transition: 0.2s;
+    -moz-transition: 0.2s;
+    -ms-transition: 0.2s;
+    -o-transition: 0.2s;
+}
+
+#navbar-sidebar.active {
+    position: absolute;
+    left: 0%;
+    top: 90px;
+    opacity: 100;
+    margin-right: 5px;
+    z-index: 100;
+    transition: 0.2s;
+    -webkit-transition: 0.2s;
+    -moz-transition: 0.2s;
+    -ms-transition: 0.2s;
+    -o-transition: 0.2s;
+}
+
+#checkRoomNav {
+    display: hidden;
+    position: fixed;
+    top: -100%;
+    transition: 0.2s;
+    -webkit-transition: 0.2s;
+    -moz-transition: 0.2s;
+    -ms-transition: 0.2s;
+    -o-transition: 0.2s;
+}
+
+#checkRoomNav.active {
+    margin: auto;
+    top: 90px;
+    opacity: 100;
+    margin-right: 5px;
+    z-index: 200;
+    transition: 0.2s;
+    -webkit-transition: 0.2s;
+    -moz-transition: 0.2s;
+    -ms-transition: 0.2s;
+    -o-transition: 0.2s;
+}
+
 #navbar_dropdown {
     position: absolute;
     display: hidden;
@@ -5,7 +55,13 @@
     opacity: 0;
     position: fixed;
     top: 20%;
+    transition: 0.2s;
+    -webkit-transition: 0.2s;
+    -moz-transition: 0.2s;
+    -ms-transition: 0.2s;
+    -o-transition: 0.2s;
 }
+
 
 #navbar_dropdown.active {
     position: absolute;
@@ -23,16 +79,16 @@
     -o-transition: 0.2s;
 }
 
+
 #login-form {
     display: hidden;
     right: -100%;
     position: fixed;
-    top: 20%;
 }
 
 #login-form.active {
     display: block;
-    position: absolute;
+    position: fixed;
     right: 20px;
     top: 70px;
     transition: 0.2s;
@@ -56,11 +112,11 @@
 
 #register-form.active {
     display: flex;
-    position: absolute;
+    position: fixed;
     justify-content: center;
     align-items: center;
+    top: 0;
     left: 0;
-    top: 70px;
     transition: 0.2s;
     -webkit-transition: 0.2s;
     -moz-transition: 0.2s;
