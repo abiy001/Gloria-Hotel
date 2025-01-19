@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\FacilityController;
+use App\Http\Controllers\HotelController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RoomController;
 use App\Http\Middleware\AuthAdmin;
@@ -30,6 +32,8 @@ Route::get('/logout', [AuthController::class, 'logout']) -> name('logout');
 Route::middleware(['auth',AuthAdmin :: class])->group(function () {
     Route::get('/dashboard', [AdminController::class, 'index'])  -> name('dashboard');
     Route::post('/room/submit', [RoomController::class, 'post']) -> name('room.submit');
+    Route::post('/facility/submit', [FacilityController::class, 'post']) -> name('facility.submit');
+    Route::post('/hotel/submit', [HotelController::class, 'post']) -> name('hotel.submit');
 
 });
 

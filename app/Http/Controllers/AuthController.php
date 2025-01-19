@@ -15,6 +15,15 @@ class AuthController extends Controller
     }
 
     function submitRegistration(Request $request) {
+
+        $request->validate([
+            'name' => 'required | string',
+            'username' => 'required | string',
+            'email' => 'required | email | unique:users',
+            'password' => 'required | string',
+            'nohp' => 'required | numeric',
+        ]);
+
         $user = new User();
         $user -> name = $request -> name;
         $user -> username = $request -> username;

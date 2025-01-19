@@ -12,40 +12,97 @@
     @component('fragments.toast')
      
     @endcomponent
-    dashboard
+
+    <h1>dashboard</h1>
    
-    <form method="POST" action="{{ route('room.submit') }}">
+    <form method="POST" action="{{ route('room.submit') }}" enctype="multipart/form-data">
         @csrf
 
         <div>
 
             <div>
-                <label for="">nomerKamar</label>
+                <label>nomerKamar</label>
                 <input type="number" name="room_number" id="">
             </div>
             
             <div>
-                <label for="">hargapermalam</label>
+                <label>hargapermalam</label>
                 <input type="number" name="price_per_day" id="">
             </div>
             
             <div>
-                <label for="">tipeKamar</label>
+                <label>tipeKamar</label>
                 <input type="text" name="room_type" id="">
             </div>
             
             <div>
-                <label for="">desc</label>
+                <label>desc</label>
                 <input type="text" name="room_description" id="">
             </div>
             
             <div>
-                <label for="">image</label>
+                <label>image</label>
                 <input type="file" name="room_image" id="">
             </div>
             
             <button type="submit">submit</button>
         </div>
     </form>
+
+    {{-- <form method="POST" action="{{ route('facility.submit') }}" enctype="multipart/form-data">
+        @csrf
+
+        <div>
+
+            <div>
+                <label>hotel name</label>
+                <input type="text" name="facility_name" id="">
+            </div>
+        
+            
+            <div>
+                <label>desc</label>
+                <input type="text" name="facility_description" id="">
+            </div>
+
+            
+            <div>
+                <label>image</label>
+                <input type="file" name="facility_image" id="">
+            </div>
+            
+            <button type="submit">submit</button>
+        </div>
+    </form> --}}
+
+    {{-- <form method="POST" action="{{ route('hotel.submit') }}" enctype="multipart/form-data">
+        @csrf
+
+        <div>
+
+            <div>
+                <label>hotel name</label>
+                <input type="text" name="hotel_name" id="">
+            </div>
+        
+            
+            <div>
+                <label>desc</label>
+                <input type="text" name="hotel_description" id="">
+            </div>
+
+            <div>
+                <label>city</label>
+                <input type="text" name="city" id="">
+            </div>
+            
+            <div>
+                <label>image</label>
+                <input type="file" name="hotel_image" id="">
+            </div>
+            
+            <button type="submit">submit</button>
+        </div>
+    </form> --}}
     </body>
     </html>

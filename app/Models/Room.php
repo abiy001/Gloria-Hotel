@@ -21,7 +21,7 @@ class Room extends Model
         'room_type',
         'price_per_day',
         'room_status',
-        'room_image',
         'room_description',
+        'room_image',
     ];
 }
