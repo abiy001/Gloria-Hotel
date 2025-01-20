@@ -14,8 +14,14 @@
     @endcomponent
 
     <h1>dashboard</h1>
+
+    <div>
+        @foreach ($room as $item)
+            <h1>{{ $item->room_description }}</h1>
+        @endforeach
+    </div>
    
-    <form method="POST" action="{{ route('room.submit') }}" enctype="multipart/form-data">
+    {{-- <form method="POST" action="{{ route('room.submit') }}" enctype="multipart/form-data">
         @csrf
 
         <div>
@@ -47,7 +53,7 @@
             
             <button type="submit">submit</button>
         </div>
-    </form>
+    </form> --}}
 
     {{-- <form method="POST" action="{{ route('facility.submit') }}" enctype="multipart/form-data">
         @csrf

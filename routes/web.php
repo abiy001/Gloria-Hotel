@@ -31,9 +31,17 @@ Route::get('/logout', [AuthController::class, 'logout']) -> name('logout');
 
 Route::middleware(['auth',AuthAdmin :: class])->group(function () {
     Route::get('/dashboard', [AdminController::class, 'index'])  -> name('dashboard');
+    Route::get('/dashboard/room-edit/{id}', [AdminController::class, 'editRoom' ])  -> name('editRoom.dashboard.view');
+    Route::get('/dashboard/facility-edit/{id}', [AdminController::class, 'editFacility' ])  -> name('editFacility.dashboard.view');
+    Route::get('/dashboard/hotel-edit/{id}', [AdminController::class, 'editHotel' ])  -> name('editHotel.dashboard.view');
+    
     Route::post('/room/submit', [RoomController::class, 'post']) -> name('room.submit');
     Route::post('/facility/submit', [FacilityController::class, 'post']) -> name('facility.submit');
     Route::post('/hotel/submit', [HotelController::class, 'post']) -> name('hotel.submit');
+
+    Route::put('/room/edit/{id}', [RoomController::class, 'update']) -> name('room.edit');
+    Route::put('/facility/edit/{id}', [FacilityController::class, 'update']) -> name('facility.edit');
+    Route::put('/hotel/edit/{id}', [HotelController::class, 'update']) -> name('hotel.edit');
 
 });
 
