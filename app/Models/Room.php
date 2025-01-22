@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Notifications\Notifiable;
 
 class Room extends Model
@@ -17,11 +18,14 @@ class Room extends Model
      */
 
     protected $fillable = [
+        'rooms_roomtype_id',
         'room_number',
-        'room_type',
-        'price_per_day',
         'room_status',
-        'room_description',
-        'room_image',
     ];
+
+
+    public function roomtype(): BelongsTo
+    {
+        return $this->belongsTo(RoomType::class,'rooms_roomtype_id');
+    }   
 }

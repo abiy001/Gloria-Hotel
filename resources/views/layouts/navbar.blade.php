@@ -27,7 +27,7 @@
 
 
 
-    <div class=" flex flex-row items-center gap-3">
+    <div class="  flex flex-row items-center gap-3">
         <div id="booking1" class=" 2xl:flex xl:flex lg:flex hidden justify-center font-semibold hover:cursor-pointer hover:bg-slate-50 hover:bg-opacity-20 text-lg items-center px-3 border border-white py-3" style="color:{{ env('COLOR_2') }}">
             <h1>BOOKING NOW</h1>
         </div>

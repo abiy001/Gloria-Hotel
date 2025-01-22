@@ -20,6 +20,6 @@ class Hotel extends Model
      'hotel_name',
      'hotel_image',
      'hotel_description',
-     'city',
+     'city_id',
  ];
 }

@@ -4,14 +4,6 @@
         <h1>x</h1>
     </div>
 
-    <div class=" 2xl:w-72 xl:w-72 lg:w-72 w-full flex flex-col gap-2 justify-between">
-        <h1 class="text-lg font-bold" style="color:{{ env('COLOR_1'); }}">Destination</h1>
-
-        <select name="city" id="" required aria-placeholder="City" class=" w-full border-none  ">
-            <option value="" class="bg-slate-50">Jakarta</option>
-            <option value="">Cirebon</option>
-        </select>
-    </div>
 
     
 <div id="date-range-picker" date-rangepicker class="flex 2xl:w-72 xl:w-72 lg:w-72 w-full items-center">
@@ -45,7 +37,7 @@
   <div class="2xl:w-60 xl:w-60 lg:w-60 w-full flex flex-col justify-between gap-2">
     <h1 class="text-sm font-bold" style="color:{{ env('COLOR_1'); }}">Guest</h1>
 
-  <input required type="number" name="guest" placeholder="guest" class=" w-full px-2 py-2 rounded-md border border-slate-900" />
+    <input required type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" inputmode="numeric" name="guest" placeholder="guest" class=" w-full px-2 py-2 rounded-md border border-slate-900" />
 </div>
 
 <a href="" class=" 2xl:w-32 xl:w-32 lg:w-32 w-full h-14 flex justify-center items-center  text-slate-50 text-sm rounded-md font-bold" style="background-color: {{ env('COLOR_3') }}">CHECK NOW</a>

@@ -17,10 +17,10 @@
  @component('fragments.toast')
      
  @endcomponent
+ @component('layouts.navbar')
+ @endcomponent
 
     <div class=" w-full">
-        @component('layouts.navbar')
-        @endcomponent
         
         <div class=" w-full  relative ">
             <img src=" {{ url('/images/hotels/hotel1.jpg') }}" alt="hotel1" 
