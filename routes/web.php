@@ -6,6 +6,7 @@ use App\Http\Controllers\CityController;
 use App\Http\Controllers\FacilityController;
 use App\Http\Controllers\HotelController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\RoomTypeController;
 use App\Http\Middleware\AuthAdmin;
@@ -63,6 +64,9 @@ Route::middleware(['auth',AuthAdmin :: class])->group(function () {
     Route::put('/hotel/edit/{id}', [HotelController::class, 'update']) -> name('hotel.edit');
     Route::put('/roomType/edit/{id}', [RoomTypeController::class, 'update']) -> name('roomType.edit');
     Route::put('/city/edit/{id}', [CityController::class, 'update']) -> name('city.edit');
+    Route::put('/reservation/cancel/{id}', [ReservationController::class, 'cancel']) -> name('reservation.cancel');
+    Route::put('/reservation/accept/{id}', [ReservationController::class, 'accept']) -> name('reservation.verifies');
+    
 
     Route::delete('/room/delete/{id}', [RoomController::class, 'destroy']) -> name('room.delete');
     Route::delete('/facility/delete/{id}', [FacilityController::class, 'destroy']) -> name('facility.delete');

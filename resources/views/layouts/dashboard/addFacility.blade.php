@@ -59,11 +59,11 @@
       <div class="col-12">
         <label for="disabledTextInput" class="form-label w-full">Facility Name</label>
               <div class="input-group has-validation">
-                <input type="text" class="form-control mb-3" value="" id="disabledTextInput" name="facility_name" placeholder="No Kamar" required>
+                <input type="text" class="form-control mb-3" value="" id="disabledTextInput" name="facility_name" placeholder="Facility Name" required>
                 
                 <div class="col-12 mb-3">
                     <label for="disabledSelect" class="form-label">facility Description</label>
-                    <input type="text" class="form-control" class="mb-3" value="" id="disabledTextInput" name="facility_description" placeholder="No Kamar" required />
+                    <input type="text" class="form-control" class="mb-3" value="" id="disabledTextInput" name="facility_description" placeholder="Facility Description" required />
                 </div> 
                 
                 <div class="col-12">

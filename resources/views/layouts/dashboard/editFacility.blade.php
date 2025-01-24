@@ -54,7 +54,7 @@
       <div class="py-3">
         <label for="disabledTextInput" class="form-label text-xl py-3 font-semibold">Facility Name</label>
               <div class="input-group has-validation my-3">
-                <input type="text" class="form-control w-full border border-2 rounded-lg border-black py-3 px-3" name="facility_name" value="{{$facility -> facility_name }}" id="disabledTextInput" placeholder="No Kamar" required>
+                <input type="text" class="form-control w-full border border-2 rounded-lg border-black py-3 px-3" name="facility_name" value="{{$facility -> facility_name }}" id="disabledTextInput" placeholder="Facility Name" required>
                 
                 <div class="col-12 pb-3">
                     <img class=" max-h-[600px] w-64 my-4" src="{{ url($facility -> facility_image ) }}" alt="">

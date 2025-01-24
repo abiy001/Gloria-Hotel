@@ -11,18 +11,22 @@ class RoomTypeController extends Controller
 {
     function post(Request $request) {
         $request->validate([
-            'roomtype_name' => 'required | string | unique:roomtype',
+            'roomtype_name' => 'required | string | unique:room_types',
             'roomtype_description' => 'required | string',
             'roomtype_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'price_per_day' => 'required | numeric',
         ]);
 
-        $room = new RoomType();
-        $room -> roomtype_name = $request -> roomtype_name;
-        $room -> roomtype_description = $request -> roomtype_description;
-        $room -> roomtype_image = $request -> roomtype_image;
-        $room -> price_per_day = $request -> price_per_day;
-        $room-> save();
+        $imageName = time().'.'.$request->roomtype_image->extension();  
+        
+        
+        $roomtype = new RoomType();
+        $roomtype -> roomtype_name = $request -> roomtype_name;
+        $roomtype -> roomtype_description = $request -> roomtype_description;
+        $roomtype -> roomtype_image = $request-> roomtype_image -> move('images/roomtypes', $imageName);
+        $roomtype -> price_per_day = $request -> price_per_day;
+        $roomtype -> guest = $request -> price_per_day;
+        $roomtype -> save();
         // dd($room);
         session::flash('success','Add Room Type Successfully');
         return redirect() -> route('roomType.dashboard.view');
@@ -31,17 +35,17 @@ class RoomTypeController extends Controller
 
     function update(Request $request, $id) {
         $request->validate([
-            'roomtype_name' => 'required | string | unique:roomtype',
+            'roomtype_name' => 'required | string | unique:room_types',
             'roomtype_description' => 'required | string',
-            'roomtype_image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'price_per_day' => 'required | numeric',
         ]);
 
-        DB::table('roomType')->where('id',$id)->update([
+        DB::table('room_types')->where('id',$id)->update([
             'roomtype_name' => $request -> roomtype_name,
             'roomtype_description'=> $request -> roomtype_description,
             'roomtype_image' => $request -> roomtype_image,
             'price_per_day' => $request -> price_per_day,
+            'guest' => $request -> guest,
         ]);
 
         session::flash('success','Update Room Type Successfully');

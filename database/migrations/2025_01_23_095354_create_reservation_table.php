@@ -11,8 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('reservation', function (Blueprint $table) {
+        Schema::create('reservations', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('room_id');
+            $table->foreign('room_id')->references('id')->on('rooms');
             $table->date('checkin_date');
             $table->date('checkout_date');
             $table->string('payment_status') -> default('pending');

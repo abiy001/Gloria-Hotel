@@ -74,6 +74,7 @@
         <table class="table table-striped table-sm flex items-center  ">
             <thead>
                 <tr>
+                    <th scope="col">No</th>
                     <th scope="col">No Kamar</th>
                     <th scope="col">Type Kamar </th>
               <th scope="col">Harga</th>
@@ -85,6 +86,7 @@
             @foreach ($room as $item)
                 
             <tr>
+              <td>{{ $loop->iteration  }}</td>
                 <td>{{ $item->room_number }}</td>
                 <td>{{ $item -> rooms_roomtype_id }}</td>
                 <td>Rp.400.000.000</td>

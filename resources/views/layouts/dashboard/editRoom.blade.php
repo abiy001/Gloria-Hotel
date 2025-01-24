@@ -24,7 +24,13 @@
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
-
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/quill/quill.snow.css" rel="stylesheet">
+  <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet">
+  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet"> 
 
   <!-- Template Main CSS File -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -52,9 +58,9 @@
             @csrf
             @method('PUT')
       <div class="py-3">
-        <label for="disabledTextInput" class="form-label text-xl py-3 font-semibold">Room Number</label>
+        <label for="disabledTextInput"  class="form-label text-xl py-3 font-semibold">Room Number</label>
               <div class="input-group has-validation my-3">
-                <input type="text" class="form-control w-full border border-2 rounded-lg border-black py-3 px-3" name="room_number" value="{{$room -> room_number }}" id="disabledTextInput" placeholder="No Kamar" required>
+                <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" inputmode="numeric" class="form-control w-full border border-2 rounded-lg border-black py-3 px-3" name="room_number" value="{{$room -> room_number }}" id="disabledTextInput" placeholder="No Kamar" required>
 
                 <div class="col-12  ">
                     <label for="disabledTextInput" class="form-label py-5 text-xl font-semibold ">Room Status</label><br>

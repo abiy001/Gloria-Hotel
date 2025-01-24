@@ -29,10 +29,9 @@ class CityController extends Controller
     function update(Request $request, $id) {
         $request->validate([
             'city_name' => 'required | string | unique:cities',
-            'city_image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        DB::table('city')->where('id',$id)->update([
+        DB::table('cities')->where('id',$id)->update([
             'city_name' => $request -> city_name,
             'city_image' => $request -> city_image,
         ]);

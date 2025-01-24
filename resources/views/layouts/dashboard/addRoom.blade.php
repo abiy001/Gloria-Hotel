@@ -59,16 +59,16 @@
       <div class="col-12">
         <label for="disabledTextInput" class="form-label w-full">No Kamar</label>
               <div class="input-group has-validation">
-                <input type="text" class="form-control" value="" id="disabledTextInput" name="room_number" placeholder="No Kamar" required>
+                <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" inputmode="numeric" class="form-control" value="" id="disabledTextInput" name="room_number" placeholder="No Kamar" required>
                 
                 <div class="col-12">
                   <label for="disabledSelect" class="form-label">Type Kamar</label>
                   <select name="rooms_roomtype_id" value=""  class="form-select" id="disabledSelect" name="jenis" required>
-                    <option value="1" disable selected hidden>Type Kamar</option>
-                    <option value="1">Reguler</option>
-                    <option value="2">Superior</option>
-                    <option value="3">Industri</option>
-                    <option value="4">Exclusive</option>
+                    <option value="1" disable selected hidden>Reguler</option>
+                    @foreach ($roomType as $item)
+                    <option value="{{ $item -> id }}">{{ $item -> roomtype_name}}</option>
+                    @endforeach
+                    
                     </select>  
                   </div>
 

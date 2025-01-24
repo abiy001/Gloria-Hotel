@@ -45,6 +45,13 @@
         </a>
       </li>
 
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="{{ route('roomType.dashboard.view') }}">
+        <i class="bi bi-arrow-right"></i>
+          <span>Data Room Type</span>
+        </a>
+      </li>
+
     </ul>
 
   </aside><!-- End Sidebar-->

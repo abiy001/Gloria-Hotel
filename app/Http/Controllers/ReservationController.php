@@ -12,8 +12,9 @@ class ReservationController extends Controller
 {
     function post(Request $request) {
         $request->validate([
-            'checkin_date' => 'required  | date | unique:rooms',
+            'checkin_date' => 'required  | date',
             'checkout_date' => 'required | date',
+            'guest_total' => 'required | integer',
 
         ]);
 
@@ -31,8 +32,9 @@ class ReservationController extends Controller
 
 
     function accept(Request $request, $id) {
-        DB::table('reservation')->where('id',$id)->update([
+        DB::table('reservations')->where('id',$id)->update([
             'payment_status' => 'verified',
+            'room_id' => $request -> room_id
         ]);
 
         session::flash('success','Accept Reservation Successfully');
@@ -40,8 +42,9 @@ class ReservationController extends Controller
         }
 
     function cancel(Request $request, $id) {
-        DB::table('reservation')->where('id',$id)->update([
+        DB::table('reservations')->where('id',$id)->update([
             'payment_status' => 'cancel',
+            
         ]);
 
         session::flash('success','Accept Reservation Successfully');

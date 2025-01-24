@@ -16,7 +16,7 @@ return new class extends Migration
             $table->integer('room_number') -> unique();
             $table->string('room_status') -> default('available'); ;
             $table->unsignedBigInteger('rooms_roomtype_id');
-            $table->foreign('rooms_roomtype_id')->references('id')->on('roomtype');
+            $table->foreign('rooms_roomtype_id')->references('id')->on('room_types');
             $table->timestamps();
         });
     }       

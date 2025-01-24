@@ -90,7 +90,7 @@
           <i class="bi bi-trash"></i>
 
                   </a>
-                  <a href="" class="btn btn-primary btn-sm px-3 py-1">
+                  <a href="{{ route('editCity.dashboard.view', $item -> id) }}" class="btn btn-primary btn-sm px-3 py-1">
                       <i class="bi bi-pencil"></i>
                     </a>
                 </div>

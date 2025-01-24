@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\City;
 use App\Models\Facility;
 use App\Models\Hotel;
+use App\Models\Reservation;
 use App\Models\Room;
 use App\Models\RoomType;
 use Illuminate\Http\Request;
@@ -13,9 +14,10 @@ class AdminController extends Controller
 {
     function index() {
 
-        $room = Room::all();
+        $reservation = Reservation :: all();
+        $rooms = Room::all() -> where('room_status', 'available');
 
-        return view('layouts/dashboard/index', compact('room'));
+        return view('layouts/dashboard/index', compact('reservation','rooms'));
     }
 
     function getRoom() {
@@ -46,13 +48,25 @@ class AdminController extends Controller
         return view('layouts/dashboard/hotel', compact('hotel' ));
     }
 
-    function addRoom() {        
-        return view('layouts/dashboard/addRoom');
+    function getRoomType() {
+        $roomType = RoomType::all();
+        // $cities = City::all();
+
+        return view('layouts/dashboard/roomType', compact('roomType' ));
+    }
+    
+
+    function addRoom() {  
+        $roomType = RoomType::all();
+        
+        
+        return view('layouts/dashboard/addRoom', compact('roomType'));
     }
 
     function addFacility() {        
         return view('layouts/dashboard/addFacility');
     }
+
 
     function addHotel() {
         $city = City::all();
@@ -60,7 +74,8 @@ class AdminController extends Controller
         return view('layouts/dashboard/addHotel', compact('city'));
     }
 
-    function addRoomType() {        
+    function addRoomType() { 
+        
         return view('layouts/dashboard/addRoomType');
     }
 
