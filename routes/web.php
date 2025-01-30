@@ -11,6 +11,7 @@ use App\Http\Controllers\RoomController;
 use App\Http\Controllers\RoomTypeController;
 use App\Http\Middleware\AuthAdmin;
 use App\Http\Middleware\AuthUser;
+use App\Models\Facility;
 use App\Models\RoomType;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -21,8 +22,17 @@ Route::get('/', function () {
     return view('layouts/home');
 }) -> name('home');
 
+Route::get('/hotels', function () {
+    return view('layouts/hotels');
+}) -> name('hotels');
+
+
+
 Route::get('/detail-hotel', function () {
-    return view('layouts/detailHotel');
+    $facility = Facility::all();
+    $roomtype = RoomType::all();
+
+    return view('layouts/detailHotel', compact('facility', 'roomtype'));
 }) -> name('detailHotel');
 
 Route::get('/detail-room', function () {

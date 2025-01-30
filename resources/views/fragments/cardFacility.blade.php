@@ -7,7 +7,7 @@
 
         <div class=" flex flex-col gap-3 mt-2">
             <h1 class=" font-bold text-2xl" style="color: {{ env('COLOR_1')  }}">{{ $name }}</h1>
-            <p class=" text-sm font-semibold text-gray-700 line-clamp-2 truncate text-wrap">Enjoy some fun family time or simply unwind in the peaceful surroundings. Featuring 3 large outdoor swimming pools surrounded by attractive gardens.</p>
+            <p class=" text-sm font-semibold text-gray-700 line-clamp-2 truncate text-wrap">{{ $description } }}</p>
         </div>
         
         <div class=" text-sm text-slate-900 mt-4">

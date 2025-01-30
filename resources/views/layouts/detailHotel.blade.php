@@ -204,12 +204,24 @@
         </div>  
         
         <div class=" grid 2xl:grid-cols-2 xl:grid-cols-2 lg:grid-cols-2 md:grid-cols-2 grid-cols-1 gap-10 min-h-full">
+            @foreach ($roomtype as $item)
+                
             @component('fragments.cardDetailRoom')
-            
+
+            @slot('img')
+            {{ $item-> roomtype_image  }}
+            @endslot
+
+            @slot('name')
+            {{ $item-> roomtype_name  }}
+            @endslot
+
+            @slot('price')
+            Rp. {{ number_format($item-> price_per_day, 0, ',', '.') }}  
+            @endslot
             @endcomponent
-            @component('fragments.cardDetailRoom')
-            
-            @endcomponent
+          
+            @endforeach
             
         </div>
     </div>
@@ -219,44 +231,26 @@
         <h1 class=" text-4xl font-bold flex flex-col gap-5" style="color: {{ env('COLOR_1') }}">FACILITIES</h1>
         
         <div class="  flex gap-3 whitespace-nowrap overflow-auto scrollbar-hide">
+            @foreach ($facility as $item)
+                
             @component('fragments.cardFacility')
             @slot('img')
-            /images/facilities/spa.jpg
+            {{ $item -> facility_image }}
             @endslot
             
             @slot('name')
-            Spa
+            {{ $item -> facility_name }}
+            @endslot
+
+            @slot('description')
+            {{ $item -> facility_description }}
             @endslot
             
             @endcomponent
-            @component('fragments.cardFacility')
-            @slot('img')
-            /images/facilities/swimming-pool.jpg
-            @endslot
-              
-              @slot('name')
-              Swimming Pool
-              @endslot
-              @endcomponent
-              @component('fragments.cardFacility')
-              @slot('img')
-              /images/facilities/gym.jpg
-              @endslot
-              
-              @slot('name')
-              Gym
-              @endslot
-              @endcomponent
-              @component('fragments.cardFacility')
-              
-              @slot('img')
-              /images/facilities/coffe-shop.jpg
-              @endslot
-              
-              @slot('name')
-              Coffe Shop
-              @endslot
-              @endcomponent
+            @endforeach
+
+          
+            
               
             </div>
         </div>
