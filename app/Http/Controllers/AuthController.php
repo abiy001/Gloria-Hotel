@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
 class AuthController extends Controller
@@ -64,4 +65,22 @@ class AuthController extends Controller
         session::flash('success','logout successfully');
         return redirect() -> route('home');
     }
+
+    function update(Request $request, $id) {
+        $request->validate([
+            'name' => 'required | string | ',
+            'username' => 'required | string |',
+            'nohp' => 'required | numeric |',
+        ]);
+
+        DB::table('users')->where('id', $id)->update([
+            'name' => $request -> name,
+            'username' => $request -> username,
+            'nohp' => $request -> nohp,
+        ]);
+
+        session::flash('success','Update user Successfully');
+        return redirect() -> route('profile.dashboard.view');
+        }
+       
 }

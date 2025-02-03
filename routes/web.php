@@ -83,11 +83,17 @@ Route::middleware(['auth',AuthAdmin :: class])->group(function () {
     Route::delete('/hotel/delete/{id}', [HotelController::class, 'destroy']) -> name('hotel.delete');
     Route::delete('/roomType/delete/{id}', [RoomTypeController::class, 'destroy']) -> name('roomType.delete');
     Route::delete('/city/delete/{id}', [CityController::class, 'destroy']) -> name('city.delete');
-
+    Route::post('/city/submit', [CityController::class, 'post']) -> name('city.submit');
+    
 });
 
 Route::middleware(['auth',AuthUser :: class])->group(function () {
-    Route::get('/profile', function () { return view('layouts/profile'); }) -> name('profile');
+    Route::get('/profile', function () { return view('layouts/profile/dashboard-customer'); }) -> name('profile.dashboard.view');
+    Route::get('/profile/edit-profile', function () { return view('layouts/profile/edit-profile'); }) -> name('profile.edit-profile');
+    Route::get('/profile/riwayat', function () { return view('layouts/profile/riwayat'); }) -> name('profile.riwayat');
+    Route::get('/profile/status-resevasi', function () { return view('layouts/profile/status-reservasi'); }) -> name('profile.reservasi');
+    Route::put('/user/edit/{id}', [AuthController::class, 'update']) -> name('user.edit');
+
 });
 
 Route::post('/register/submit', [AuthController::class, 'submitRegistration']) -> name('register.submit');
