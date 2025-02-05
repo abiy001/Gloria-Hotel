@@ -37,27 +37,25 @@
         </div>
     </div>
 
-    @component('fragments.checkRoomNav')
-        
-    @endcomponent
 
-    @if (! Auth::user())
-        
+
+    
+    @if ( ! Auth::user())
     @component('layouts.login')
     
     @endcomponent
-    
-    @endif
-    
-    @if (! Auth::user())
         
     @component('layouts.register')
     
     @endcomponent
     @endif
-
-    @if (Auth::user())
+    
+    @component('fragments.checkRoomNav')
         
+    @endcomponent
+
+    @if (Auth::user() )
+
     <div id="navbar_dropdown" class="text-slate-900 font-bold">
         <a href="{{ route('logout') }}" class=" hover:bg-slate-200 bg-slate-50 shadow-sm px-6 py-2">Logout</a>
         <a href="{{ route('profile.dashboard.view') }}" class=" hover:bg-slate-200 bg-slate-50 shadow-sm px-6 py-2">Profile</a>

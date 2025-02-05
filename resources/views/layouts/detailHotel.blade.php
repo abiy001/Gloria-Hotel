@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/css/navbar.css">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="css/navbar.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
     <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
     <title>Detail Hotel</title>
     <style>
         #show-all-btn :hover{
@@ -37,7 +38,7 @@
  @component('layouts.navbar')
  @endcomponent
  
- <div class="h-[300px] overflow-y-scroll scrollbar-hide min-h-screen scrollbar-hide ">
+ <div id="" class="h-[300px] overflow-y-scroll scrollbar-hide min-h-screen scrollbar-hide ">
 
      <div class=" w-full">
          <div class=" w-full ">
@@ -46,9 +47,9 @@
         </div>
         
         <nav class=" bg-slate-50 text-slate-700 shadow-xl px-4 py-3 font-bold  gap-4 text-lg flex items-center">
-            <a href="">Overview</a>
-            <a href="">Room Type</a>
-            <a href="">Facilities</a>
+            <a href="#">Overview</a>
+            <a href="#roomtype">Room Type</a>
+            <a href="#facilities">Facilities</a>
         </nav>
         
         <div class=" container mx-auto p-7 2xl:w-11/12 xl:w-11/12 w-full ">
@@ -77,7 +78,7 @@
         </div>
 
         <div class="flex flex-col gap-4">
-            <div class=" text-4xl font-bold flex flex-col gap-5" style="color: {{ env('COLOR_1') }}">
+            <div  class=" text-4xl font-bold flex flex-col gap-5" style="color: {{ env('COLOR_1') }}">
                 <h1 class="text-3xl mb-3">Facilities</h1>
                 
                 <div class=" flex flex-row items-center justify-start gap-9">
@@ -113,7 +114,8 @@
                       
                       @component('fragments.facility')
                       @slot('icon')
-                      <i class="ph-bold ph-wifi-high"></i>                      @endslot
+                      <i class="ph-bold ph-wifi-high"></i>     
+                                       @endslot
                       
                       @slot('name')
                       Wifi Connection
@@ -166,7 +168,8 @@
                             
                             @component('fragments.facility')
                             @slot('icon')
-                            <i class="ph-bold ph-wifi-high"></i>                      @endslot
+                            <i class="ph-bold ph-wifi-high"></i>      
+                                            @endslot
                             
                             @slot('name')
                             Wifi Connection
@@ -197,7 +200,7 @@
     <div class=" w-full h-[1px] my-7 bg-black rounded-full"></div>
 
     
-    <div class=" flex flex-col gap-5">
+    <div id="roomtype" class=" flex flex-col gap-5">
         <div class=" text-4xl font-bold flex flex-col gap-5" style="color: {{ env('COLOR_1') }}">
             <h1>ROOM TYPE</h1>
         </div>  
@@ -226,7 +229,7 @@
     </div>
     
     {{-- Facilities --}}
-    <div class=" flex flex-col gap-5 mt-5">
+    <div id="facilities" class=" flex flex-col gap-5 mt-5">
         <h1 class=" text-4xl font-bold flex flex-col gap-5" style="color: {{ env('COLOR_1') }}">FACILITIES</h1>
         
         <div class="  flex gap-3 whitespace-nowrap overflow-auto scrollbar-hide">
@@ -256,8 +259,8 @@
         {{-- Facilities --}}
     </div>
     </div>
-    
-    <script src="js/navbar.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="/js/navbar.js"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
