@@ -52,6 +52,13 @@
         </a>
       </li>
 
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="{{ route('logout') }}">
+        <i class="bi bi-arrow-right"></i>
+          <span>Logout</span>
+        </a>
+      </li>
+
     </ul>
 
   </aside><!-- End Sidebar-->

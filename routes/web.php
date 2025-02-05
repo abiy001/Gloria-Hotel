@@ -9,9 +9,12 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\RoomTypeController;
+use App\Http\Controllers\UserViewController;
 use App\Http\Middleware\AuthAdmin;
 use App\Http\Middleware\AuthUser;
+use App\Models\City;
 use App\Models\Facility;
+use App\Models\Hotel;
 use App\Models\RoomType;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -23,21 +26,32 @@ Route::get('/', function () {
 }) -> name('home');
 
 Route::get('/hotels', function () {
-    return view('layouts/hotels');
+    $cities = City::all();
+    
+    return view('layouts/hotels', compact('cities','cities'));
 }) -> name('hotels');
 
+Route::get('/hotels/{city}', function ($city) {
+    $cities = City::all();
+    
+    return view('layouts/hotelsByCity', compact('cities','cities'));
+}) -> name('hotelsByCity');
 
 
-Route::get('/detail-hotel', function () {
-    $facility = Facility::all();
-    $roomtype = RoomType::all();
 
-    return view('layouts/detailHotel', compact('facility', 'roomtype'));
-}) -> name('detailHotel');
+Route::get('/detail/hotels/{id}/', [UserViewController::class, 'detail_hotel' ]) -> name('detailHotel');
 
-Route::get('/detail-room', function () {
-    return view('layouts/detailRoom');
-}) -> name('detailRoom');
+
+// Route::get('/hotels/{city}/', [UserViewController::class, 'hoteByCity' ]) -> name('hoteByCity');
+// Route::get('/detail-hotels/', function() {
+//     // $hotel = Hotel::findOrFail();
+//     $facility = Facility::all();
+//     $roomtype = RoomType::all();
+
+//     return View ('layouts/detailHotel', compact('facility', 'roomtype'));
+// }) -> name('detailHotel');
+
+Route::get('/detail/room/{room}', [UserViewController::class, 'detail_room' ]) -> name('detailRoom');
 
 Route::get('/login', [LoginController::class,'index']) -> name('login');
 

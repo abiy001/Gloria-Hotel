@@ -29,16 +29,21 @@
 
              <!-- 2xl: grid-cols 4, xl: grid-cols-3, lg: grid-cols-2, md: grid-cols-2, sm: grid-cols-1    -->
 
-                @component('fragments/hotelcard')
-                    
-                    @slot('img')
-                    images/kota/denpasara.jpg
-                    @endslot
-                   
-                    @slot('city')
-                    Medan
-                    @endslot
-                @endcomponent
+             @foreach ($cities as $item)
+                 
+             @component('fragments/hotelcard')
+             
+             @slot('img')
+             {{ $item -> city_image }}
+             @endslot
+
+             @slot('city')
+             {{ $item -> city_name }}
+             @endslot
+             @endcomponent
+          
+
+            @endforeach
 
              
             </div>

@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="css/navbar.css">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/navbar.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
     <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
@@ -28,7 +28,6 @@
             scrollbar-width: none;  /* Firefox */
         }
     </style>
-    <link rel="stylesheet" href="css/detailHotel.css">
 </head>
 <body class="pb-4">
  @component('fragments.toast')
@@ -42,7 +41,7 @@
 
      <div class=" w-full">
          <div class=" w-full ">
-             <img class=" w-full max-h-[500px]" src=" {{ url('/images/hotels/hotel3.jpg') }}" alt="">
+             <img class=" w-full max-h-[500px]" src="/{{ $hotel -> hotel_image }} " alt="image">
             </div>
         </div>
         

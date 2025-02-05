@@ -9,7 +9,7 @@
 
     <div id="navbar-sidebar" class="2xl:hidden xl:hidden lg:hidden flex flex-col gap-4 text-lg font-semibold w-[300px] p-4 justify-center text-slate-50" style="background-color: {{ env('COLOR_3') }}">
         <a href="/" class="hover:bg-slate-50 hover:bg-opacity-10 px-4 flex justify-start items-center  py-3 ">HOME</a>
-        <a href="/" class="hover:bg-slate-50 hover:bg-opacity-10 px-4 flex justify-start items-center  py-3 ">HOTELS</a>
+        <a href="{{ route('hotels') }}" class="hover:bg-slate-50 hover:bg-opacity-10 px-4 flex justify-start items-center  py-3 ">HOTELS</a>
         <a href="/" class="hover:bg-slate-50 hover:bg-opacity-10 px-4 flex justify-start items-center  py-3 ">OFFERS</a>
         <a href="/" class="hover:bg-slate-50 hover:bg-opacity-10 px-4 flex justify-start items-center  py-3">WEDDING</a>
         <div id="booking2" class=" flex justify-center font-semibold hover:cursor-pointer hover:bg-slate-50 hover:bg-opacity-20 text-lg items-center px-3 border border-white py-3" style="color:{{ env('COLOR_2') }}">
@@ -19,7 +19,7 @@
 
     <div class=" 2xl:flex xl:flex lg:flex  hidden gap-4 text-lg font-semibold">
         <a href="/" class="hover:bg-slate-50 hover:bg-opacity-10 px-2 py-2 rounded-lg">HOME</a>
-        <a href="/" class="hover:bg-slate-50 hover:bg-opacity-10 px-2 py-2 rounded-lg">HOTELS</a>
+        <a href="{{ route('hotels') }}" class="hover:bg-slate-50 hover:bg-opacity-10 px-2 py-2 rounded-lg">HOTELS</a>
         <a href="/" class="hover:bg-slate-50 hover:bg-opacity-10 px-2 py-2 rounded-lg">OFFERS</a>
         <a href="/" class="hover:bg-slate-50 hover:bg-opacity-10 px-2 py-2 rounded-lg">WEDDING</a>
     </div>

@@ -79,8 +79,9 @@
               <th scope="col">Type Kamar</th>
               <th scope="col">No Kamar</th>
               <th scope="col">Harga</th>
-              <th scope="col">Hari</th>
-              <th scope="col">Tgl</th>
+              <th scope="col">Check In</th>
+              <th scope="col">Check Out</th>
+              <th scope="col">Status Payment</th>
               <th scope="col">Aksi</th>
             </tr>
           </thead>
@@ -90,11 +91,12 @@
             <tr>
                 <td>{{ $loop->iteration  }}</td>
                 <td>{{ $item-> name }}</td>
-                <td>Superior</td>
-                <td>122</td>
-              <td>Rp.120.000.000</td>
-              <td>7</td>
-              <td>17-08-95</td>
+                <td>{{ $item -> room_id }}</td>
+                <td>{{ $item -> room_id }}</td>
+              <td>{{ $item -> price }}</td>
+              <td>{{ $item -> checkin_date }}</td>
+              <td>{{ $item -> checkout_date }}</td>
+              <td>{{ $item -> payment_status }}</td>
               <td>
                   @if ($item-> payment_status == 'pending')
                   <div class="flex gap-2 flex-warp min-h-full">
