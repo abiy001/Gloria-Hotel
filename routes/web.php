@@ -25,6 +25,14 @@ Route::get('/', function () {
     return view('layouts/home');
 }) -> name('home');
 
+Route::get('/wedding', function () {
+    return view('layouts/wedding');
+}) -> name('wedding');
+
+Route::get('/offers', function () {
+    return view('layouts/offers');
+}) -> name('offers');
+
 Route::get('/hotels', function () {
     $cities = City::all();
     
@@ -89,7 +97,7 @@ Route::middleware(['auth',AuthAdmin :: class])->group(function () {
     Route::put('/roomType/edit/{id}', [RoomTypeController::class, 'update']) -> name('roomType.edit');
     Route::put('/city/edit/{id}', [CityController::class, 'update']) -> name('city.edit');
     Route::put('/reservation/cancel/{id}', [ReservationController::class, 'cancel']) -> name('reservation.cancel');
-    Route::put('/reservation/accept/{id}', [ReservationController::class, 'accept']) -> name('reservation.verifies');
+    Route::put('/reservation/accept/{id}', [ReservationController::class, 'accept']) -> name('reservation.verified');
     
 
     Route::delete('/room/delete/{id}', [RoomController::class, 'destroy']) -> name('room.delete');

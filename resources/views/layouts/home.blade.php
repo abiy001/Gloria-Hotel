@@ -14,10 +14,10 @@
 
 </head>
 <body>
+        @component('layouts.navbar')
+        @endcomponent
  @component('fragments.toast')
      
- @endcomponent
- @component('layouts.navbar')
  @endcomponent
 
     <div class=" w-full">

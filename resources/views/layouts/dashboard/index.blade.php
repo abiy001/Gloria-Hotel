@@ -38,11 +38,19 @@
   
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
-  
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
+
 </head>
 
 <body class="">
   
+  @component('fragments.toast')
+    
+  @endcomponent
+
   <!-- ======= Header ======= -->
   <header id="header" class="header fixed-top d-flex align-items-center" style="background-color: {{ env('COLOR_1') }};">
 
@@ -98,16 +106,17 @@
               <td>{{ $item -> checkout_date }}</td>
               <td>{{ $item -> payment_status }}</td>
               <td>
-                  @if ($item-> payment_status == 'pending')
+                  @if ($item-> booking_status == 'pending')
                   <div class="flex gap-2 flex-warp min-h-full">
-                            <form id="form_delete" action="{{ route('reservation.cancel',  $item -> id ) }}" method="POST">
+                            <form id="form_cancel" action="{{ route('reservation.cancel',  $item -> id ) }}" method="POST">
                                 @csrf
                                 @method('PUT')
 
                                 <button type="submit"></button>
                             </form>
 
-                            <a href="" onclick="cancelReservation(event)" class="btn btn-danger btn-sm px-3 py-1">
+                           
+                            <a onclick="cancelReservation(event)" class="btn btn-danger btn-sm px-3 py-1">
                               <i class="bi bi-x"></i>
                             </a>
 
@@ -119,32 +128,38 @@
                     @endif
 
 
-                    @if ($item->status == 'verified')
-                    
+                    @if ($item->booking_status == 'verified')
+                    <h1 class=" bg-green-500 text-slate-50 flex justify-center items-center font-bold py-2 rounded-full ">Verified </h1>
+                    @endif
+
+                    @if ($item->booking_status == 'cancel')
+                    <h1 class=" bg-red-500 text-slate-50 flex justify-center items-center font-bold py-2 rounded-full ">Cancel </h1>
                     @endif
                 </td>
             </tr>
-            @endforeach
-        </tbody>
+          </tbody>
         </table>
       </div>
 
-      <form action="" method="POST" id="add-room-number" class=" absolute flex flex-col gap-2 px-2 justify-around items-center w-[350px] h-[300px] py-4 bg-slate-950 text-slate-50 shadow-xl translate-x-1/2">
+      <form action="{{ route('reservation.verified', $item -> id) }}" method="POST" id="add-room-number" class=" absolute flex flex-col gap-2 px-2 justify-around items-center w-[350px] h-[300px] py-4 bg-slate-950 text-slate-50 shadow-xl translate-x-1/2">
+        @csrf
+        @method('PUT')
         <div id="btn-close"  class=" hover:cursor-pointer flex justify-end text-sm w-full mr-2 flex-row">
             <h1 class="text-xl font-bold">X</h1>
-        </div>
-        <h1 class="text-xl font-bold">Add Room Number</h1>
-        <select name="room_id" id="" class="w-11/12 h-[40px] outline-none shadow-md text-slate-950">
+          </div>
+          <h1 class="text-xl font-bold">Add Room Number</h1>
+          <select name="room_id" id="" class="w-11/12 h-[40px] outline-none shadow-md text-slate-950">
             @foreach ($rooms as $item )
-                
+            
             <option value="{{ $item -> id }}">{{ $item -> room_number }}</option>
             @endforeach
-        </select>
-
-        <div>
+          </select>
+          
+          <div>
             <button class="btn btn-primary my-3 w-[330px]">Submit</button>
-        </div>
-      </form>
+          </div>
+        </form>
+        @endforeach
    
 </main><!-- End #main -->
 
@@ -163,7 +178,7 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
-    <script>
+  <script>
         const addRoomNumber = document.getElementById('add-room-number')
         const addRoomNumberBtn = document.getElementById('add-room-number-btn')
         const btnClose = document.getElementById('btn-close')
@@ -177,25 +192,24 @@
         })
 
         function cancelReservation(e) {
-            
-            e.preventDefault();
-            
-            const form = document.getElementById('form_delete');
-            
-            Swal.fire({
-                title: "Are you sure to cancel?",
-                text: "You won't be able to revert this!",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#3085d6",
-                cancelButtonColor: "#d33",
-                confirmButtonText: "Yes, delete it!"
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        form.submit();
-                    }
-                });
-                }
+      e.preventDefault();
+
+      const form = document.getElementById('form_cancel');
+
+      Swal.fire({
+  title: "Are you sure?",
+  text: "You won't be able to revert this!",
+  icon: "warning",
+  showCancelButton: true,
+  confirmButtonColor: "#3085d6",
+  cancelButtonColor: "#d33",
+  confirmButtonText: "Yes, cancel reservation!"
+}).then((result) => {
+  if (result.isConfirmed) {
+    form.submit();
+  }
+});
+    }
     </script>
 </body>
 

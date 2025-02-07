@@ -18,6 +18,7 @@ return new class extends Migration
             $table->date('checkin_date');
             $table->date('checkout_date');
             $table->string('payment_status') -> default('pending');
+            $table->string('booking_status') -> default('pending');
             $table -> integer('guest_total');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');

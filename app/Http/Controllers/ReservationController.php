@@ -22,7 +22,7 @@ class ReservationController extends Controller
         $reservation -> checkin_date = $request -> checkin_date;
         $reservation -> checkout_date = $request -> checkout_date;
         $reservation -> guest_total = $request -> guest_total;
-        $reservation -> payment_status = 'pending';
+        $reservation -> booking_status = 'pending';
         $reservation -> user_id = Auth::user()->id;
         $reservation-> save();
         // dd($reservation);
@@ -33,7 +33,7 @@ class ReservationController extends Controller
 
     function accept(Request $request, $id) {
         DB::table('reservations')->where('id',$id)->update([
-            'payment_status' => 'verified',
+            'booking_status' => 'verified',
             'room_id' => $request -> room_id
         ]);
 
@@ -43,7 +43,7 @@ class ReservationController extends Controller
 
     function cancel(Request $request, $id) {
         DB::table('reservations')->where('id',$id)->update([
-            'payment_status' => 'cancel',
+            'booking_status' => 'cancel',
             
         ]);
 

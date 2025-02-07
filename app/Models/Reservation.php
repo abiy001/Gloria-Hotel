@@ -20,6 +20,7 @@ class Reservation extends Model
      'checkin_date',
      'checkout_date',
      'payment_status',
+     'booking_status',
      'guest_total',
      'user_id',
  ];
