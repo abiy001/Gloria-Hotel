@@ -1,4 +1,4 @@
-<a href="{{ route('hotelsByCity' , ['city' => $city]) }}" class="relative group">
+<a href="{{ route('hotelsByCity' , ['city' => $id]) }}" class="relative group">
     <!-- Gambar -->
     <img class="h-48 w-full object-cover" src="{{$img}}" alt="">
 

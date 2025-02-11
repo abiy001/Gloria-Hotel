@@ -40,9 +40,10 @@ Route::get('/hotels', function () {
 }) -> name('hotels');
 
 Route::get('/hotels/{city}', function ($city) {
-    $cities = City::all();
+    $cities = City::all() -> findOrFail($city);
+    $hotels = Hotel::all() -> where('city_id', $city);
     
-    return view('layouts/hotelsByCity', compact('cities','cities'));
+    return view('layouts/hotelsByCity', compact('cities','hotels'));
 }) -> name('hotelsByCity');
 
 
@@ -111,6 +112,7 @@ Route::middleware(['auth',AuthAdmin :: class])->group(function () {
 
 Route::middleware(['auth',AuthUser :: class])->group(function () {
     Route::get('/profile', function () { return view('layouts/profile/dashboard-customer'); }) -> name('profile.dashboard.view');
+    Route::get('/booking', function () { return view('layouts/booking'); }) -> name('booking.view');
     Route::get('/profile/edit-profile', function () { return view('layouts/profile/edit-profile'); }) -> name('profile.edit-profile');
     Route::get('/profile/riwayat', function () { return view('layouts/profile/riwayat'); }) -> name('profile.riwayat');
     Route::get('/profile/status-resevasi', function () { return view('layouts/profile/status-reservasi'); }) -> name('profile.reservasi');

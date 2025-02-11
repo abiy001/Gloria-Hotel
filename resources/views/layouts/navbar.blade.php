@@ -51,10 +51,10 @@
 @if (Auth::user())
     
 
+@endif
 @component('fragments.checkRoomNav')
 
 @endcomponent
-@endif
 
     @if (Auth::user() )
 

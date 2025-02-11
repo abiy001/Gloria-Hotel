@@ -40,6 +40,10 @@
              @slot('city')
              {{ $item -> city_name }}
              @endslot
+
+             @slot('id')
+             {{ $item -> id  }}
+             @endslot
              @endcomponent
           
 

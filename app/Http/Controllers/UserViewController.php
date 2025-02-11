@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\View;
 
 class UserViewController extends Controller
 {
+
     function detail_hotel($id) {
         $hotel = Hotel::findOrFail($id);
     $facility = Facility::all();
