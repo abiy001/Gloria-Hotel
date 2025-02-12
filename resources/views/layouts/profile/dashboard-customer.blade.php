@@ -6,6 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="css/navbar.css">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="/images/logo-hotel/logo-hotel.png" rel="icon">
+    <link href="/images/logo-hotel/logo-hotel.png" rel="apple-touch-icon">
+
     <title>Profile</title>
 </head>
 <body>

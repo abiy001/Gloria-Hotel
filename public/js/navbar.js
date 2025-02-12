@@ -24,6 +24,7 @@ register_span.addEventListener("click", () => {
 });
 
 menu.addEventListener("click", () => {
+    // navbar_sidebar.classList.toggle('-translate-x-full');
     navbar_sidebar.classList.toggle("active");
 });
 

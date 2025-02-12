@@ -17,7 +17,6 @@ class City extends Model
   */
   
     protected $fillable = [
-        'id',
         'city_name',
         'city_image',
     ];

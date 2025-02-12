@@ -21,8 +21,8 @@ class AuthController extends Controller
             'name' => 'required | string',
             'username' => 'required | string',
             'email' => 'required | email | unique:users',
-            'password' => 'required | string',
-            'nohp' => 'required | numeric',
+            'password' => 'required | string | min:8',
+            'nohp' => 'required |  numeric | size:11',
         ]);
 
         $user = new User();

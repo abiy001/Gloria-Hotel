@@ -6,6 +6,8 @@
   <title>Edit Profile</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="js/navbar.js"></script>
+  <link href="/images/logo-hotel/logo-hotel.png" rel="icon">
+  <link href="/images/logo-hotel/logo-hotel.png" rel="apple-touch-icon">
 
   <link rel="stylesheet" href="css/navbar.css">
 </head>

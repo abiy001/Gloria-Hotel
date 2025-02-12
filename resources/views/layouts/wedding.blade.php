@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wedding</title>
     <link rel="stylesheet" href="boxicons.min.css">
-    
+    <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
+
   <!-- slider stylesheet -->
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
 
@@ -18,6 +19,8 @@
 <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script><link rel="stylesheet"href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
 
+<link href="/images/logo-hotel/logo-hotel.png" rel="icon">
+<link href="/images/logo-hotel/logo-hotel.png" rel="apple-touch-icon">
 
 
 <!-- Custom styles for this template -->

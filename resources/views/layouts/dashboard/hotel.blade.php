@@ -16,8 +16,8 @@
 
 
   <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="/images/logo-hotel/logo-hotel.png" rel="icon">
+  <link href="/images/logo-hotel/logo-hotel.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -74,8 +74,8 @@
         <table class="table table-striped table-sm flex items-center  ">
             <thead>
                 <tr>
+                  <th scope="col">No</th>
                     <th scope="col">Hotel Name</th>
-                    <th scope="col">Hotel Description </th>
               <th scope="col">City</th>
               <th scope="col">Deskripsi</th>
               <th scope="col">Aksi</th>
@@ -86,10 +86,10 @@
             @foreach ($hotel as $item)
                 
             <tr>
+              <td>{{ $loop->iteration  }}</td>
                 <td>{{ $item->hotel_name }}</td>
-                <td>{{ $item -> city_id }}</td>
-                <td>Rp.400.000.000</td>
-                <td>Kamar yang mewah</td>
+                <td>{{ $item -> city -> city_name }}</td>
+                <td>{{ $item  -> hotel_description }}</td>
                 <td>
                     <div class="flex flex-warp gap-2">
                       <form id="form_delete" action="{{ route('hotel.delete',  $item -> id ) }}" method="POST">

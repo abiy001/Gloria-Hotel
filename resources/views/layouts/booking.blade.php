@@ -10,7 +10,9 @@
     <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
     <script src="../path/to/flowbite/dist/flowbite.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
-    <title>Booking</title>
+    <link href="/images/logo-hotel/logo-hotel.png" rel="icon">
+    <link href="/images/logo-hotel/logo-hotel.png" rel="apple-touch-icon">
+<title>Booking</title>
 
 </head>
 <body style="background-color: {{ env('COLOR_3') }}" class=" text-slate-50 ">

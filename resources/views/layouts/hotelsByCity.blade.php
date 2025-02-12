@@ -6,6 +6,8 @@
   <title>Hotel Landing Page</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="/css/navbar.css">
+  <link href="/images/logo-hotel/logo-hotel.png" rel="icon">
+  <link href="/images/logo-hotel/logo-hotel.png" rel="apple-touch-icon">
   <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
 </head>
 <body class="font-sans antialiased">
@@ -17,13 +19,13 @@
   <section class="w-full relative">
       <img src="/{{$cities -> city_image}}" class="w-full relative max-h-[500px]">
       <div class=" absolute w-full h-full top-0 bg-slate-900 bg-opacity-40"></div>
-      <h2 class="absolute 2xl:top-80 xl:top-80 lg:top-80 md:top-80 sm:top-80 top-56 flex w-full h-full text-white text-3xl md:text-5xl font-roboto font-bold px-8">STAY WITH US IN CIREBON</h2>
+      <h2 class="absolute 2xl:top-80 xl:top-80 lg:top-80 md:top-80 sm:top-80 top-56 flex w-full h-full text-white text-3xl md:text-5xl font-roboto font-bold px-8 uppercase">STAY WITH US IN {{ $cities -> city_name }}</h2>
   </section>
 
   <!-- Hotels Section -->
   <div class=" flex flex-col container mx-auto 2xl:w-11/12">
 
-  <h2 class="pl-6 text-6xl mt-6 font-sans font-bold">
+  <h2 class="pl-6 text-6xl mt-6 font-sans font-bold uppercase">
         {{ $cities -> city_name }}
       </h2>
   <section class="container mx-auto py-16 px-6 items-center justify-items-center">

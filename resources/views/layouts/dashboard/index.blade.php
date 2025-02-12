@@ -19,9 +19,9 @@
     </style>
 
   <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-  
+  <link href="/images/logo-hotel/logo-hotel.png" rel="icon">
+  <link href="/images/logo-hotel/logo-hotel.png" rel="apple-touch-icon">
+
   <!-- Google Fonts -->
   <link href="https://fonts.gstatic.com" rel="preconnect">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
@@ -99,9 +99,9 @@
             <tr>
                 <td>{{ $loop->iteration  }}</td>
                 <td>{{ $item-> name }}</td>
-                <td>{{ $item -> room_id }}</td>
-                <td>{{ $item -> room_id }}</td>
-              <td>{{ $item -> price }}</td>
+                <td>{{ $item -> room -> roomtype -> roomtype_name }}</td>
+                <td>{{ $item -> room -> room_number }}</td>
+                <td>{{ $item -> room -> roomtype -> price_per_day }}</td>
               <td>{{ $item -> checkin_date }}</td>
               <td>{{ $item -> checkout_date }}</td>
               <td>{{ $item -> payment_status }}</td>

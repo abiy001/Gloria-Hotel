@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Dashboard - NiceAdmin Bootstrap Template</title>
+  <title>Dashboard - Manage Rooms</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -16,8 +16,8 @@
 
 
   <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="/images/logo-hotel/logo-hotel.png" rel="icon">
+  <link href="/images/logo-hotel/logo-hotel.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -88,9 +88,9 @@
             <tr>
               <td>{{ $loop->iteration  }}</td>
                 <td>{{ $item->room_number }}</td>
-                <td>{{ $item -> rooms_roomtype_id }}</td>
-                <td>Rp.400.000.000</td>
-                <td>Kamar yang mewah</td>
+                <td>{{ $item -> roomtype -> roomtype_name }}</td>
+                <td>{{ $item -> roomtype -> price_per_day }}</td>
+                <td>{{ $item -> roomtype -> roomtype_description }}</td>
                 <td>
                     <div class="flex flex-warp gap-2">
                       <form id="form_delete" action="{{ route('room.delete',  $item -> id ) }}" method="POST">

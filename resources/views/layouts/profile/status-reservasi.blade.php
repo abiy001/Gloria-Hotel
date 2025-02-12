@@ -5,6 +5,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="css/navbar.css">
+    <link href="/images/logo-hotel/logo-hotel.png" rel="icon">
+    <link href="/images/logo-hotel/logo-hotel.png" rel="apple-touch-icon">
+
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Status Reservasi</title>

@@ -18,14 +18,21 @@ class Room extends Model
      */
 
     protected $fillable = [
+        'room_id',
         'rooms_roomtype_id',
         'room_number',
         'room_status',
     ];
 
-
+    /*
+      *  @return BelongsTo
+    */
     public function roomtype(): BelongsTo
     {
         return $this->belongsTo(RoomType::class,'rooms_roomtype_id');
+    }   
+    public function reservation(): BelongsTo
+    {
+        return $this->belongsTo(Reservation::class,'room_id');
     }   
 }

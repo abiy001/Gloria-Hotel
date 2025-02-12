@@ -18,7 +18,7 @@ class RoomType extends Model
   */
 
  protected $fillable = [
-        'roomtype_id',
+      //   'roomtype_id',
      'roomtype_name',
      'roomtype_description',
      'roomtype_image',
@@ -26,7 +26,10 @@ class RoomType extends Model
      'price_per_day',
  ];
 
+ /*
+ * @return HasMany
+ */
  public function rooms():HasMany {
-    return $this -> hasMany(Room::class);
+    return $this->hasMany(Room::class);
  }
 }

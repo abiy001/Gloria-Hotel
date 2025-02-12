@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="/css/navbar.css">
+    <link href="/images/logo-hotel/logo-hotel.png" rel="icon">
+    <link href="/images/logo-hotel/logo-hotel.png" rel="apple-touch-icon">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
