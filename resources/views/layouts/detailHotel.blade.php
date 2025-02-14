@@ -193,6 +193,7 @@
         </div>
     </div>
     
+    
     <div id="show-all-btn" class="flex justify-center items-center mx-auto w-full mt-3 font-bold">
         <div  class=" flex justify-center items-center px-3 py-1 border border-black" >
             <h1>Show All</h1>
@@ -214,6 +215,10 @@
 
             @slot('img')
             {{ $item-> roomtype_image  }}
+            @endslot
+
+            @slot('link')
+            {{ route('detailRoom', $item -> id) }}
             @endslot
 
             @slot('name')

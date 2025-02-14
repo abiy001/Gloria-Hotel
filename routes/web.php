@@ -25,6 +25,10 @@ Route::get('/', function () {
     return view('layouts/home');
 }) -> name('home');
 
+// Route::get('/booking', function () {
+//     return view('layouts/booking');
+// }) -> name('booking');
+
 Route::get('/wedding', function () {
     return view('layouts/wedding');
 }) -> name('wedding');
@@ -41,7 +45,7 @@ Route::get('/hotels', function () {
 
 Route::get('/hotels/{city}', function ($city) {
     $cities = City::all() -> findOrFail($city);
-    $hotels = Hotel::all() -> where('city_id', $city);
+    $hotels = Hotel::all() -> where('id', $city);
     
     return view('layouts/hotelsByCity', compact('cities','hotels'));
 }) -> name('hotelsByCity');
@@ -49,16 +53,6 @@ Route::get('/hotels/{city}', function ($city) {
 
 
 Route::get('/detail/hotels/{id}/', [UserViewController::class, 'detail_hotel' ]) -> name('detailHotel');
-
-
-// Route::get('/hotels/{city}/', [UserViewController::class, 'hoteByCity' ]) -> name('hoteByCity');
-// Route::get('/detail-hotels/', function() {
-//     // $hotel = Hotel::findOrFail();
-//     $facility = Facility::all();
-//     $roomtype = RoomType::all();
-
-//     return View ('layouts/detailHotel', compact('facility', 'roomtype'));
-// }) -> name('detailHotel');
 
 Route::get('/detail/room/{room}', [UserViewController::class, 'detail_room' ]) -> name('detailRoom');
 

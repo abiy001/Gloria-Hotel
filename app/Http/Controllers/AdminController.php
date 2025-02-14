@@ -90,6 +90,7 @@ class AdminController extends Controller
         return view('layouts/dashboard/editRoom', compact('room'));
     }
 
+
     function editFacility($id) {
         $facility = Facility::findOrFail($id);
         
