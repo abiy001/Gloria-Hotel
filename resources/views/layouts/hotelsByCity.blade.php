@@ -54,7 +54,7 @@
         @endslot
 
         @slot('link')
-        {{ route('detailHotel', $item -> id) }}
+        {{ route('detailHotel',['city' => $item -> city -> city_name , 'hotel' => $item -> hotel_name]) }}
         @endslot
         @endcomponent
        

@@ -44,28 +44,22 @@
         <div class="pt-4 md:pt-14 mt-4">
             <div class="bg-white text-black rounded-md p-4 mb-4">
                 <label for="checkin" class="text-gray-600">Checkin</label>
-                <input type="date" id="checkin" value="{{ new Date }}" class="w-full border rounded p-2 mt-1" onchange="updateNights()">
+                <input type="date" id="checkin" disabled value="{{ date('Y-m-d') }}" class="w-full border rounded p-2 mt-1" >
                 <label for="checkout" class="text-gray-600 mt-4 block">Checkout</label>
-                <input type="date" id="checkout" class="w-full border rounded p-2 mt-1" onchange="updateNights()">
+                <input type="date" id="checkout" disabled min="{{ date('Y-m-d', strtotime("+1 day")) }}) }}" value="{{ date('Y-m-d', strtotime("+1 day")) }}" class="w-full border rounded p-2 mt-1" >
                 <p class="text-gray-600 mt-4">Nights</p>
-                <input type="number" id="Nights" class="w-full border rounded p-2 mt-1">
+                <input type="number" id="night" value="1"  disabled  class="w-full border rounded p-2 mt-1">
                 <p class="text-gray-600">Room</p>
                     <div class="flex-col justify-between items-center mt-2">
-                        <p>Adults</p>
+                        <p>Guest</p>
                         <div class="flex items-center gap-2">
-                            <button onclick="updateGuests('adults', -1)" class="bg-gray-200 rounded px-2">-</button>
-                            <span id="adults">0</span>
-                            <button onclick="updateGuests('adults', 1)" class="bg-gray-200 rounded px-2">+</button>
+                            <button onclick=" {updateGuests('adults','guest', -1)} " class="bg-gray-200 rounded px-2">-</button>
+                            <span id="adults">2</span>
+                            <input type="text" id="guest" value="2" name="guest" hidden />
+                            <button onclick="updateGuests('adults','guest', 1)" class="bg-gray-200 rounded px-2">+</button>
                         </div>
                     </div>
-                    <div class="flex-col justify-between items-center mt-2">
-                        <p>Kids</p>
-                        <div class="flex items-center gap-2">
-                            <button onclick="updateGuests('kids', -1)" class="bg-gray-200 rounded px-2">-</button>
-                            <span id="kids">0</span>
-                            <button onclick="updateGuests('kids', 1)" class="bg-gray-200 rounded px-2">+</button>
-                        </div>
-                    </div>
+                   
 
                     <form action="" class="flex justify-center items-center w-svh">
                         <button class="bg-green-700 w-full p-2 mt-4 rounded-lg text-lg font-semibold text-white">Check Available </button>
@@ -84,81 +78,57 @@
                 
             
      <div class="flex flex-col gap-3">
+            
+        @foreach ($roomType1 as $item)
+            
+        {{-- @if ($roomType1) --}}
+        @if (!$item )
+        
         @component('fragments.cardRoomBooking')
         @slot('img')
-        images/offers/foto7.jpg
+        images/roomtypes\1738893348.jpg
         @endslot
         @slot('jenis')
-        REGULARE
+        REGULER
         @endslot
         @slot('keterangan')
-        A 28 sqm room that offer high quality amenities expected from 4 stars international hotel standard, Superior Room offers a comfortable atmosphere. 
-        Whether you  are on business travelling or holiday, this modern Javanese living is perfectly suit your need. This room is available in Twin Beds and non-smoking rooms.
+        fdsaf
         @endslot
-        @slot('diskon')
-        RP 632,000
-        @endslot
+        
         @slot('harga')
-        RP 721,000
+        RP 1000000
         @endslot
         @endcomponent
-
+        {{-- @endif --}}
+        @endif
+        @endforeach
+        
+        {{-- @if ($roomType2) --}}
+        {{-- @foreach ($roomType2 as $item) --}}
+            
+        @if (! $roomType2)
+        
+        
         @component('fragments.cardRoomBooking')
         @slot('img')
-        images/offers/foto8.jpg
+        images/roomtypes\1738893374.jpg
+        
         @endslot
-        @slot('jenis')
-        INDUSTRI
-        @endslot
-        @slot('keterangan')
-        With 30 sqm living space, Superior Triple Room configured with 1 queen and single bed or 3 single beds.
-         This room is perfect for families or friend traveling together. Superior Triple room is available with your choice of Triple King Size bed or Triple Single Beds as well as non smoking room.
-        @endslot
-        @slot('diskon')
-        RP 715,000
-        @endslot
-        @slot('harga')
-        RP 845,000
-        @endslot
-        @endcomponent
-
-        @component('fragments.cardRoomBooking')
-        @slot('img')
-        images/offers/foto9.jpg
-        @endslot
-        @slot('jenis')
-        EXCLUSIVE
-        @endslot
-        @slot('keterangan')
-        Take in vibrant views city of Solo from the wide windows of our spacious and modern suites with separate seating, working and dining areas.
-        These 69 sqm suites feature microwave, coffee and tea machine, entertainment channels and complimentary WiFi access. Unwind in the bathtub or the shower in the marble bathrooms. 
-        @endslot
-        @slot('diskon')
-        RP 888,000
-        @endslot
-        @slot('harga')
-        RP 967,000
-        @endslot
-        @endcomponent
-
-        @component('fragments.cardRoomBooking')
-        @slot('img')
-        images/offers/foto10.jpg
-        @endslot
-        @slot('jenis')
-        SUPERRIOR
-        @endslot
-        @slot('keterangan')
-        72 sqm modern and unique room facilitated with private living room, various TV channel, pantry and dining table, separate bath tub and shower, Enjoy the vibrant Solo city view from wide windows of these spacious Suite that also featured with microwave and coffee & tea making facility. 
-        @endslot
-        @slot('diskon')
-        RP 999,000
-        @endslot
-        @slot('harga')
-        RP 1,200,000
-        @endslot
-        @endcomponent
-    </div>
+            @slot('jenis')
+            ELITE
+            @endslot
+            @slot('keterangan')
+            fadfd
+            @endslot
+            
+            @slot('harga')
+            RP 2000000
+            @endslot
+            @endcomponent
+            {{-- @endif     --}}
+            @endif
+            {{-- @endforeach --}}
+        </div>
     </div>
 </div>
 
@@ -167,23 +137,22 @@
         const sidebar = document.getElementById('sidebar');
         sidebar.classList.toggle('hidden');
     });
-    function updateNights() {
+
             const checkin = new Date(document.getElementById('checkin').value);
             const checkout = new Date(document.getElementById('checkout').value);
-            
-            if (checkin && checkout && checkout > checkin) {
-                const difference = Math.ceil((checkout - checkin) / (1000 * 60 * 60 * 24));
-                document.getElementById('nights').textContent = difference;
-            } else {
-                document.getElementById('nights').textContent = 1;
-            }
-        }
+            const nights = checkin.splice('-')[0] - checkout.splice('-')[0];
+            const nightInput = document.getElementById('night');
 
-        function updateGuests(type, change) {
+            nightInput.value = Number(nights);
+
+        function updateGuests(type,type2, change) {
             const element = document.getElementById(type);
+            const element2 = document.getElementById(type2);
             let value = parseInt(element.textContent);
             value = Math.max(0, value + change); // Prevent negative values
             element.textContent = value;
+            element2.value = value;
+
         }
 
 </script>

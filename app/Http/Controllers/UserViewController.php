@@ -12,8 +12,8 @@ use Illuminate\Support\Facades\View;
 class UserViewController extends Controller
 {
 
-    function detail_hotel($id) {
-        $hotel = Hotel::findOrFail($id);
+    function detail_hotel($city,$hotel) {
+        $hotel = Hotel::leftJoin('cities', 'hotels.id', '=', 'cities.id') -> where('hotel_name', $hotel)->where('cities.city_name', $city)->first();
     $facility = Facility::all();
     $roomtype = RoomType::all();
 

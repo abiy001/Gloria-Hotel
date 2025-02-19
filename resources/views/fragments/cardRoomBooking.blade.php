@@ -17,8 +17,8 @@
         <!-- Price & Button -->
         <div class="mt-4">
             <div>
-                <p class="text-2xl font-bold text-blue-600" style="color:{{ env('COLOR_1')  }};">{{ $diskon }}</p>
-                <p class="line-through text-gray-400 text-sm">{{ $harga }}</p>
+                <p class="text-2xl font-bold text-blue-600" style="color:{{ env('COLOR_1')  }};">{{ $harga }}</p>
+                {{-- <p class="line-through text-gray-400 text-sm">{{ $harga }}</p> --}}
                 <p class="text-gray-500 text-xs">Taxes included for 1 night</p>
             </div>
             <button style="background-color:{{ env('COLOR_1') }};" class=" font-bold text-lg px-2 py-2 mt-2 hover:bg-blue-800 rounded-lg text-white w-full">

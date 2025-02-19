@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CityController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\FacilityController;
 use App\Http\Controllers\HotelController;
 use App\Http\Controllers\LoginController;
@@ -15,6 +16,8 @@ use App\Http\Middleware\AuthUser;
 use App\Models\City;
 use App\Models\Facility;
 use App\Models\Hotel;
+use App\Models\Reservation;
+use App\Models\Room;
 use App\Models\RoomType;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -44,15 +47,15 @@ Route::get('/hotels', function () {
 }) -> name('hotels');
 
 Route::get('/hotels/{city}', function ($city) {
-    $cities = City::all() -> findOrFail($city);
-    $hotels = Hotel::all() -> where('id', $city);
+    $cities = City:: where ('city_name',$city) -> first();
+    $hotels = Hotel:: leftJoin('cities', 'hotels.city_id', '=', 'cities.id') -> where('cities.city_name', $city ) -> get();
     
     return view('layouts/hotelsByCity', compact('cities','hotels'));
 }) -> name('hotelsByCity');
 
 
 
-Route::get('/detail/hotels/{id}/', [UserViewController::class, 'detail_hotel' ]) -> name('detailHotel');
+Route::get('/hotels/{city}/{hotel}', [UserViewController::class, 'detail_hotel' ]) -> name('detailHotel');
 
 Route::get('/detail/room/{room}', [UserViewController::class, 'detail_room' ]) -> name('detailRoom');
 
@@ -106,12 +109,26 @@ Route::middleware(['auth',AuthAdmin :: class])->group(function () {
 
 Route::middleware(['auth',AuthUser :: class])->group(function () {
     Route::get('/profile', function () { return view('layouts/profile/dashboard-customer'); }) -> name('profile.dashboard.view');
-    Route::get('/booking', function () { return view('layouts/booking'); }) -> name('booking.view');
+    Route::get('/booking', function () {
+
+        $roomTypes= RoomType::all();
+        $room1 = Room :: all() -> where('rooms_roomtype_id', 1) -> where('room_status', 'available');
+        $room2 = Room :: all() -> where('rooms_roomtype_id', 2) -> where('room_status', 'available');
+
+        $roomType1 = Reservation :: leftJoin('rooms', 'reservations.room_id', '=' , 'rooms.id') -> where('checkin_date', '>=', date('Y-m-d'))->where('checkout_date', '<=', date('Y-m-d', strtotime("+1 day")))->where('payment_status', 'pending') ->where('room_status', 'available') -> where('booking_status', 'cancel') -> where('rooms.rooms_roomtype_id', 1) -> get();
+
+        // $roomType2 = Reservation :: leftJoin('rooms', 'reservations.room_id', '=' , 'rooms.id') -> where('checkin_date', '>=', date('Y-m-d'))->where('checkout_date', '<=', date('Y-m-d', strtotime("+1 day")))->where('payment_status', 'pending') ->where('rooms.room_status', 'available') -> where('booking_status', 'cancel') -> where('rooms.rooms_roomtype_id', 2) ;
+
+        $roomType2 = Reservation :: leftJoin('rooms', 'reservations.room_id', '=', 'rooms.id') -> where('rooms.room_status', 'available') -> where('booking_status', 'cancel') -> where('rooms.rooms_roomtype_id', 2) -> where('payment_status', 'pending') -> where('checkin_date', '>=', date('Y-m-d'))->where('checkout_date', '<=', date('Y-m-d', strtotime("+1 day"))) -> get();
+
+         return view('layouts/booking', compact('roomTypes', 'room1', 'room2','roomType1', 'roomType2')); 
+        }) -> name('booking.view');
     Route::get('/profile/edit-profile', function () { return view('layouts/profile/edit-profile'); }) -> name('profile.edit-profile');
     Route::get('/profile/riwayat', function () { return view('layouts/profile/riwayat'); }) -> name('profile.riwayat');
     Route::get('/profile/status-resevasi', function () { return view('layouts/profile/status-reservasi'); }) -> name('profile.reservasi');
     Route::put('/user/edit/{id}', [AuthController::class, 'update']) -> name('user.edit');
-
+    
+    Route::post('/comment/submit', [CommentController::class, 'submitComment']) -> name('comment.submit');
 });
 
 Route::post('/register/submit', [AuthController::class, 'submitRegistration']) -> name('register.submit');

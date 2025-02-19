@@ -12,7 +12,7 @@
     <link href="/images/logo-hotel/logo-hotel.png" rel="icon">
     <link href="/images/logo-hotel/logo-hotel.png" rel="apple-touch-icon">
 
-    <title>Document</title>
+    <title>Hotels Page</title>
 
 </head>
 <body>
