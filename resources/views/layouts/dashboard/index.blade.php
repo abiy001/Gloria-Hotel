@@ -86,10 +86,10 @@
                     <th scope="col">Nama </th>
               <th scope="col">Type Kamar</th>
               <th scope="col">No Kamar</th>
-              <th scope="col">Harga</th>
               <th scope="col">Check In</th>
               <th scope="col">Check Out</th>
               <th scope="col">Status Payment</th>
+              <th scope="col">Total Harga</th>
               <th scope="col">Aksi</th>
             </tr>
           </thead>
@@ -98,13 +98,13 @@
                 
             <tr>
                 <td>{{ $loop->iteration  }}</td>
-                <td>{{ $item-> name }}</td>
+                <td>{{ $item-> user -> name }}</td>
                 <td>{{ $item -> room -> roomtype -> roomtype_name }}</td>
                 <td>{{ $item -> room -> room_number }}</td>
-                <td>{{ $item -> room -> roomtype -> price_per_day }}</td>
-              <td>{{ $item -> checkin_date }}</td>
-              <td>{{ $item -> checkout_date }}</td>
-              <td>{{ $item -> payment_status }}</td>
+                <td>{{ $item -> checkin_date }}</td>
+                <td>{{ $item -> checkout_date }}</td>
+                <td>{{ $item -> payment_status }}</td>
+                <td>{{ number_format( date_diff(date_create($item -> checkin_date), date_create($item -> checkout_date)) ->format('%d') *   $item -> room -> roomtype -> price_per_day, 0 , ',' , '.') }}</td>
               <td>
                   @if ($item-> booking_status == 'pending')
                   <div class="flex gap-2 flex-warp min-h-full">

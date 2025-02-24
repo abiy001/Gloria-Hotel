@@ -17,17 +17,24 @@ class ReservationController extends Controller
             'guest_total' => 'required | integer',
 
         ]);
+        $reservationExist = Reservation :: all() -> where('checkin_date', $request -> checkin_date) -> where('checkout_date', $request -> checkout_date) -> where('payment_status', 'pending');
 
-        $reservation = new Reservation();
-        $reservation -> checkin_date = $request -> checkin_date;
-        $reservation -> checkout_date = $request -> checkout_date;
-        $reservation -> guest_total = $request -> guest_total;
-        $reservation -> booking_status = 'pending';
-        $reservation -> user_id = Auth::user()->id;
-        $reservation-> save();
-        // dd($reservation);
-        session::flash('success','Reservation Successfully');
-        return redirect() -> back();
+
+        if($reservationExist -> count() > 0) {
+            $reservation = new Reservation();
+            $reservation -> checkin_date = $request -> checkin_date;
+            $reservation -> checkout_date = $request -> checkout_date;
+            $reservation -> guest_total = $request -> guest_total;
+            $reservation -> payment_status = 'pending';
+            $reservation -> booking_status = 'pending';
+            $reservation -> user_id = Auth::user()->id;
+            $reservation-> save();
+            // dd($reservation);
+        } else {
+            
+            session::flash('error','There is no available room');
+            return redirect() -> back();
+        }
     }
 
 

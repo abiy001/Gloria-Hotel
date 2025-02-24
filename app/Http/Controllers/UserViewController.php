@@ -22,7 +22,7 @@ class UserViewController extends Controller
     return View ('layouts/detailHotel', compact('hotels','facility', 'roomtype','comments'));
     }
 
-    function detail_room($room) {
+    function detail_room($hotel,$city, $room) {
     //     $hotel = Hotel::findOrFail($room);
     // $facility = Facility::all();
     $roomtype = RoomType::findOrFail($room);

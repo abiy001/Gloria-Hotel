@@ -25,7 +25,8 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/', function () {
-    return view('layouts/home');
+    $facilities = Facility::all();
+    return view('layouts/home', compact('facilities'));
 }) -> name('home');
 
 // Route::get('/booking', function () {
@@ -57,7 +58,7 @@ Route::get('/hotels/{city}', function ($city) {
 
 Route::get('/hotels/{city}/{hotel}', [UserViewController::class, 'detail_hotel' ]) -> name('detailHotel');
 
-Route::get('/detail/room/{room}', [UserViewController::class, 'detail_room' ]) -> name('detailRoom');
+Route::get('/hotels/{city}/{hotel}/{room}', [UserViewController::class, 'detail_room' ]) -> name('detailRoom');
 
 Route::get('/login', [LoginController::class,'index']) -> name('login');
 
@@ -128,6 +129,7 @@ Route::middleware(['auth',AuthUser :: class])->group(function () {
     Route::get('/profile/status-resevasi', function () { return view('layouts/profile/status-reservasi'); }) -> name('profile.reservasi');
     Route::put('/user/edit/{id}', [AuthController::class, 'update']) -> name('user.edit');
     
+    Route::post('/reservation/submit', [ReservationController::class, 'post']) -> name('reservation.submit');
     Route::post('/comment/submit/', [CommentController::class, 'submitComment']) -> name('comment.submit');
 });
 

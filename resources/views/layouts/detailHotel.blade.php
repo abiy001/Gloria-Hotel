@@ -52,7 +52,7 @@
             <a href="#">Overview</a>
             <a href="#roomtype">Room Type</a>
             <a href="#facilities">Facilities</a>
-            <a href="#coments">Comments</a>
+            <a href="#comments">Comments</a>
         </nav>
         
         <div class=" container mx-auto p-7 2xl:w-11/12 xl:w-11/12 w-full ">
@@ -219,7 +219,7 @@
             @endslot
 
             @slot('link')
-            {{ route('detailRoom', $item -> id) }}
+            {{ route('detailRoom', ['hotel' => $hotels->hotel_name ,'city'=> $hotels->city->city_name, 'room'=> $item->id]) }}
             @endslot
 
             @slot('name')
@@ -267,7 +267,7 @@
         {{-- Facilities --}}
 
         {{-- Comment --}}
-        <div id="facilities" class=" flex flex-col gap-5 mt-5">
+        <div id="comments" class=" flex flex-col gap-5 mt-5">
             <h1 class=" text-4xl font-bold flex flex-col gap-5" style="color: {{ env('COLOR_1') }}">COMMENTS</h1>
           
             @if (Auth() -> user())

@@ -32,4 +32,6 @@ class RoomType extends Model
  public function rooms():HasMany {
     return $this->hasMany(Room::class);
  }
+
+ 
 }
