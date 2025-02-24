@@ -27,7 +27,7 @@ class HotelController extends Controller
         $hotel-> save();
         // dd($hotel);
         session::flash('success','Add Hotel Successfully');
-        return redirect() -> route('hotel.dashboard.view');
+        return redirect() -> back();
     }
 
     
@@ -47,7 +47,7 @@ class HotelController extends Controller
         ]);
 
         session::flash('success','Update Hotel Successfully');
-        return redirect() -> route('hotel.dashboard.view');
+        return redirect() -> back();
         }
 
     public function destroy(Hotel $id)
@@ -55,6 +55,6 @@ class HotelController extends Controller
             $id->delete();
 
             session::flash('success','Delete Hotel Successfully');
-            return redirect() -> route('hotel.dashboard.view');
+            return redirect() -> back();
     }
 }

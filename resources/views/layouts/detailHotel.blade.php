@@ -44,7 +44,7 @@
 
      <div class=" w-full">
          <div class=" w-full ">
-             <img class=" w-full max-h-[500px]" src="/{{ $hotel -> hotel_image }} " alt="image">
+             <img class=" w-full max-h-[500px]" src="/{{ $hotels -> hotel_image }} " alt="image">
             </div>
         </div>
         
@@ -52,6 +52,7 @@
             <a href="#">Overview</a>
             <a href="#roomtype">Room Type</a>
             <a href="#facilities">Facilities</a>
+            <a href="#coments">Comments</a>
         </nav>
         
         <div class=" container mx-auto p-7 2xl:w-11/12 xl:w-11/12 w-full ">
@@ -272,17 +273,26 @@
             @if (Auth() -> user())
                 
             <div class=" flex flex-row gap-4 w-full items-center justify-between">
-                <input class=" w-full bg-white border border-slate-900 outline py-2 px-4" type="text" name="comment" id="" />
-                <a href="{{ route('submitComment',['hotelID' => $hotel -> id  , 'userID' => Auth() -> user() -> id]) }}" class=" text-slate-50 py-2 px-4" style="background-color:{{ env('COLOR_3')}};">Kirim</a>
+                <form class="flex flex-row gap-4 w-full items-center justify-between" enctype="multipart/form-data" action="{{ route('comment.submit',['hotel_id' => $hotels -> id  , 'user_id' => Auth() -> user() -> id]) }}" method="POST" >
+                    @csrf
+                    <input type="text" hidden value="{{ Auth() -> user() -> id }}" name="user_id" />
+                    <input type="text" hidden value="{{ $hotels -> id }}" name="hotel_id" />
+                    <input class=" w-full bg-white border border-slate-900 outline py-2 px-4" type="text" name="comment" id="" />
+                    <button type="submit" class=" text-slate-50 py-2 px-4" style="background-color:{{ env('COLOR_3')}};">Kirim</button>
+                </form>
             </div>
             
             @endif
 
-            <div>
-            <div class="flex flex-col  gap-3 shadow-inner p-3">
-                <h1 class=" font-bold text-2xl">Nama</h1>
-                <p class=" text-justify">Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui quo rerum minima deserunt incidunt inventore ipsum impedit eos voluptas ipsam voluptate autem voluptates nulla, quasi voluptatum adipisci neque quaerat? Aliquam adipisci incidunt doloremque esse, maiores doloribus, laudantium culpa, qui quaerat quae sint? Et nemo reiciendis voluptates, animi soluta eligendi, iure commodi ipsum esse in sed asperiores consectetur optio dicta a amet iste! Dolor distinctio nisi quos quidem fuga, laboriosam rerum deserunt repellendus omnis doloremque? Ex odio sequi quibusdam ipsa amet facilis dolores consequuntur veritatis! Nostrum voluptates quia odit corporis maxime at aliquam labore id amet. Fuga a labore perferendis sit.</p>
-            </div>
+            <div class=" flex flex-col gap-3">
+                @foreach ($comments as $item)
+                    
+                <div class="flex flex-col  gap-3 shadow-inner p-3">
+                    <h1 class=" font-bold text-2xl">{{ $item -> user -> name }}</h1>
+                    <p class=" text-justify">{{ $item -> comment }}</p>
+                </div>
+                @endforeach
+         
           </div>
             </div>
         {{-- Comment --}}

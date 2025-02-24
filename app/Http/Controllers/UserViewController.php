@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\City;
+use App\Models\Comments;
 use App\Models\Facility;
 use App\Models\Hotel;
 use App\Models\RoomType;
@@ -12,12 +13,13 @@ use Illuminate\Support\Facades\View;
 class UserViewController extends Controller
 {
 
-    function detail_hotel($city,$hotel) {
-        $hotel = Hotel::leftJoin('cities', 'hotels.id', '=', 'cities.id') -> where('hotel_name', $hotel)->where('cities.city_name', $city)->first();
-    $facility = Facility::all();
-    $roomtype = RoomType::all();
+    function detail_hotel($city, $hotel) {
+        $hotels = Hotel::leftJoin('cities', 'hotels.id', '=', 'cities.id') -> where('hotels.hotel_name', $hotel)->where('cities.city_name', $city)->first();
+        $facility = Facility::all();
+        $roomtype = RoomType::all();
+        $comments = Comments ::leftJoin('hotels', 'comments.hotel_id', '=', 'hotels.id') -> where('hotels.hotel_name', $hotel)->get();
 
-    return View ('layouts/detailHotel', compact('hotel','facility', 'roomtype'));
+    return View ('layouts/detailHotel', compact('hotels','facility', 'roomtype','comments'));
     }
 
     function detail_room($room) {
@@ -28,6 +30,4 @@ class UserViewController extends Controller
     return View ('layouts/detailRoom', compact('roomtype'));
     }
 
-
-    
 }

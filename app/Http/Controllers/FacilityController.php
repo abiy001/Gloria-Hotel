@@ -27,7 +27,7 @@ class FacilityController extends Controller
         $facility-> save();
         // dd($facility);
         session::flash('success','Add Facility Successfully');
-        return redirect() -> route('facility.dashboard.view');
+        return redirect() -> back();
     }
 
         function update(Request $request, $id) {
@@ -45,7 +45,7 @@ class FacilityController extends Controller
             ]);
     
             session::flash('success','Update Facility Successfully');
-            return redirect() -> route('facility.dashboard.view');
+            return redirect() -> back();
             } 
 
         public function destroy(Facility $id)
@@ -53,6 +53,6 @@ class FacilityController extends Controller
                 $id->delete();
 
                 session::flash('success','Delete Facility Successfully');
-                return redirect() -> route('facility.dashboard.view');
+                return redirect() -> back();
         }
 }

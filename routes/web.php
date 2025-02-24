@@ -128,7 +128,7 @@ Route::middleware(['auth',AuthUser :: class])->group(function () {
     Route::get('/profile/status-resevasi', function () { return view('layouts/profile/status-reservasi'); }) -> name('profile.reservasi');
     Route::put('/user/edit/{id}', [AuthController::class, 'update']) -> name('user.edit');
     
-    Route::post('/comment/submit', [CommentController::class, 'submitComment']) -> name('comment.submit');
+    Route::post('/comment/submit/', [CommentController::class, 'submitComment']) -> name('comment.submit');
 });
 
 Route::post('/register/submit', [AuthController::class, 'submitRegistration']) -> name('register.submit');

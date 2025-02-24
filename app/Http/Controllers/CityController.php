@@ -22,7 +22,7 @@ class CityController extends Controller
         $city-> save();
         // dd($city);
         session::flash('success','Add City Type Successfully');
-        return redirect() -> route('city.dashboard.view');
+        return redirect() -> back();
     
     }
 
@@ -37,13 +37,13 @@ class CityController extends Controller
         ]);
 
         session::flash('success','Update City Successfully');
-        return redirect() -> route('city.dashboard.view');
+        return redirect() -> back();
         }
         public function destroy(City $id)
         {
             $id->delete();
 
             session::flash('success','Delete City Successfully');
-            return redirect() -> route('city.dashboard.view');
+            return redirect() -> back();
         } 
 }

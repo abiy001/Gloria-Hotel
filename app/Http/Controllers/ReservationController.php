@@ -27,7 +27,7 @@ class ReservationController extends Controller
         $reservation-> save();
         // dd($reservation);
         session::flash('success','Reservation Successfully');
-        return redirect() -> route('dashboard');
+        return redirect() -> back();
     }
 
 
@@ -38,7 +38,7 @@ class ReservationController extends Controller
         ]);
 
         session::flash('success','Accept Reservation Successfully');
-        return redirect() -> route('dashboard');
+        return redirect() -> back();
         }
 
     function cancel(Request $request, $id) {
@@ -48,6 +48,6 @@ class ReservationController extends Controller
         ]);
 
         session::flash('success','Accept Reservation Successfully');
-        return redirect() -> route('dashboard');
+        return redirect() -> back();
         }
 }

@@ -22,7 +22,7 @@ class AuthController extends Controller
             'username' => 'required | string',
             'email' => 'required | email | unique:users',
             'password' => 'required | string | min:8',
-            'nohp' => 'required |  numeric ',
+            'nohp' => 'required  | numeric | digits_between:10,13',
         ]);
 
         $user = new User();

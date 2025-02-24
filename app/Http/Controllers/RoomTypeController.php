@@ -29,7 +29,7 @@ class RoomTypeController extends Controller
         $roomtype -> save();
         // dd($room);
         session::flash('success','Add Room Type Successfully');
-        return redirect() -> route('roomType.dashboard.view');
+        return redirect() -> back();
     
     }
 
@@ -49,7 +49,7 @@ class RoomTypeController extends Controller
         ]);
 
         session::flash('success','Update Room Type Successfully');
-        return redirect() -> route('roomType.dashboard.view');
+        return redirect() -> back();
         }
 
         public function destroy(RoomType $id)
@@ -57,6 +57,6 @@ class RoomTypeController extends Controller
             $id->delete();
 
             session::flash('success','Delete Room Type Successfully');
-            return redirect() -> route('roomType.dashboard.view');
+            return redirect() -> back();
         }
 }

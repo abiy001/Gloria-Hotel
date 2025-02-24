@@ -24,7 +24,7 @@ class RoomController extends Controller
         $room-> save();
         // dd($room);
         session::flash('success','Add Room Successfully');
-        return redirect() -> route('room.dashboard.view');
+        return redirect() -> back();
     }
 
     function update(Request $request, $id) {
@@ -41,7 +41,7 @@ class RoomController extends Controller
         ]);
 
         session::flash('success','Update Room Successfully');
-        return redirect() -> route('room.dashboard.view');
+        return redirect() -> back();
         }
 
          function destroy(Room $id)
@@ -50,6 +50,6 @@ class RoomController extends Controller
                 
 
                 session::flash('success','Delete Room Successfully');
-                return redirect() -> route('room.dashboard.view');
+                return redirect() -> back();
             }
     }
