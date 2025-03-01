@@ -63,10 +63,21 @@
                 
                 <div class="col-12">
                   <label for="disabledSelect" class="form-label">Type Kamar</label>
-                  <select name="rooms_roomtype_id" value=""  class="form-select" id="disabledSelect" name="jenis" required>
+                  <select name="rooms_roomtype_id" value=""   class="form-select" id="disabledSelect" name="jenis" required>
                     <option value="1" disable selected hidden>Reguler</option>
                     @foreach ($roomType as $item)
                     <option value="{{ $item -> id }}">{{ $item -> roomtype_name}}</option>
+                    @endforeach
+                    
+                    </select>  
+                  </div>
+
+                <div class="col-12">
+                  <label for="disabledSelect" class="form-label">Hotel</label>
+                  <select name="hotel_id" value=""  required class="form-select" id="disabledSelect" name="jenis" >
+                    {{-- <option value="1" disable selected hidden>Aston</option> --}}
+                    @foreach ($hotels as $item)
+                    <option value="{{ $item -> id }}">{{ $item -> hotel_name}}</option>
                     @endforeach
                     
                     </select>  

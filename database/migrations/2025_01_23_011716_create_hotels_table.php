@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('hotel_image');
             $table->longText('hotel_description');
             $table -> unsignedBigInteger('city_id');
+            $table -> integer('hotel_rating') -> default(0);
+            $table -> integer('total_rating') -> default(0);
             $table->foreign('city_id')->references('id')->on('cities');
             $table->timestamps();
         });

@@ -22,17 +22,26 @@ class Reservation extends Model
      'checkout_date',
      'payment_status',
      'booking_status',
+     'room_type_id',
      'guest_total',
      'room_id',
      'user_id',
+   //   'hotel_id',
  ];
 
  public function user() : BelongsTo {
     return $this->belongsTo(User::class, 'user_id');
  }
- public function room() : BelongsTo {
+ public function rooms() : BelongsTo {
     return $this->belongsTo(Room::class, 'room_id');
  }
 
+//  public function hotel() : BelongsTo {
+//     return $this->belongsTo(Hotel::class, 'hotel_id');
+//  }
+
+public function roomtype() : BelongsTo {
+    return $this->belongsTo(RoomType::class, 'room_type_id');
+ }
 
 }

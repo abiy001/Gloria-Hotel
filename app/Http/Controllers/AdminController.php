@@ -15,15 +15,20 @@ class AdminController extends Controller
     function index() {
 
         $reservation = Reservation :: all();
-        $rooms = Room::all() -> where('room_status', 'available');
+        $rooms = Room::all()  -> where('checkout_date', '<=', date('Y-m-d')  ) -> where('room_status', 'available');
 
         return view('layouts/dashboard/index', compact('reservation','rooms'));
     }
 
-    function getRoom() {
+    function getRoom($sort = 'nomorKamarTerkecil') {
 
-        $room = Room::all();
-
+        if($sort == 'nomorKamarTerbesar') {
+            $room = Room::orderBy('room_number', 'desc')->get();
+        } else if($sort == 'nomorKamarTerkecil') {
+            $room = Room::orderBy('room_number', 'asc')->get();
+        } else if($sort == 'available') {
+            $room = Room::orderBy('room_status', 'available')->get();
+        }
         return view('layouts/dashboard/room', compact('room'));
     }
 
@@ -55,12 +60,17 @@ class AdminController extends Controller
         return view('layouts/dashboard/roomType', compact('roomType' ));
     }
     
+    function getLaporanBulanan() {
+        $reservation = Reservation::all() -> where('payment_status', 'paid');        
+
+        return view('layouts/dashboard/laporanBulanan', compact('reservation'));
+    }
 
     function addRoom() {  
         $roomType = RoomType::all();
+        $hotels = Hotel::all();
         
-        
-        return view('layouts/dashboard/addRoom', compact('roomType'));
+        return view('layouts/dashboard/addRoom', compact('roomType','hotels'));
     }
 
     function addFacility() {        
@@ -86,8 +96,10 @@ class AdminController extends Controller
  
     function editRoom($id) {
         $room = Room::findOrFail($id);
-        
-        return view('layouts/dashboard/editRoom', compact('room'));
+        $roomType = RoomType::all();
+        $hotels = Hotel::all();
+
+        return view('layouts/dashboard/editRoom', compact('room','roomType' ,'hotels'));
     }
 
 

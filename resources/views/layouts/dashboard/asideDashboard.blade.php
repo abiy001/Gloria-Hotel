@@ -25,7 +25,7 @@
       </li><!-- End Contact Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="laporanbulanan">
+        <a class="nav-link collapsed" href="{{ route('laporanbulanan.dashboard.view') }}">
         <i class="bi bi-arrow-right"></i>
           <span>Laporan bulanan</span>
         </a>

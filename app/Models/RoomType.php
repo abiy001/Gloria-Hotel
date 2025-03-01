@@ -32,6 +32,9 @@ class RoomType extends Model
  public function rooms():HasMany {
     return $this->hasMany(Room::class);
  }
+ public function reservation():HasMany {
+    return $this->hasMany(Reservation::class);
+ }
 
  
 }

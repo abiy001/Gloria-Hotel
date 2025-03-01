@@ -21,9 +21,9 @@
         @endcomponent
     </div>
 
-    <div>
-        <img src="public/images/hotels/hotel1.jpg   " alt="">
-    </div>
+    {{-- <div>
+        <img src="/images/hotels/hotel1.jpg   " alt="">
+    </div> --}}
     
         <div class="pb-24">
             <div class=" flex pt-24">
@@ -50,11 +50,12 @@
              @slot('id')
              {{ $item -> id  }}
              @endslot
+
              @endcomponent
           
 
-            @endforeach
-
+             
+             @endforeach
              
             </div>
 
@@ -66,7 +67,9 @@
 <div>
     
 </div>
-
+@component('layouts.footer')
+    
+@endcomponent
 <script src="/js/navbar.js"></script>
 
 </body>

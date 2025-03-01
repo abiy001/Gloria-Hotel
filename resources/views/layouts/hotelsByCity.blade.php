@@ -42,6 +42,12 @@
         @foreach ($hotels as $item)
         
         @component('fragments.cardHotel')
+        @slot('hotel')
+        {{ $item -> hotel_name }}
+        @endslot
+        @slot('city')
+        {{ $item -> city -> city_name }}
+        @endslot
         @slot('img')
         /{{ $item -> hotel_image  }}
         @endslot
@@ -53,9 +59,6 @@
         {{ $item -> hotel_description }}
         @endslot
 
-        @slot('link')
-        {{ route('detailHotel',['city' => $item -> city -> city_name , 'hotel' => $item -> hotel_name]) }}
-        @endslot
         @endcomponent
        
     
@@ -65,36 +68,9 @@
 </div>
 
   <!-- Footer Section -->
-  <footer class="text-white py-10" style="background-color: {{ env('COLOR_1') }};  color: {{ env('COLOR_2') }}">
-    <div class="container mx-auto grid md:grid-cols-3 gap-8 px-6">
-      <div >
-        <h5 class="text-lg font-bold mb-4">Contact Us</h5>
-          <a href="https://www.instagram.com/aby_olaa/?utm_source=ig_web_button_share_sheet" class="text-white block">@Hafidz_abiyyu</a>
-          <a href="https://www.instagram.com/yazid.khairul3?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" class="text-white block">@Yazid_Khairul</a>
-          <a href="https://www.instagram.com/dweinata?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" class="text-white block">@Rangga_Pandu</a>
-          <a href="https://www.instagram.com/mfrdanp_?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" class="text-white block">@M.Fardhan</a>
-          <a href="https://www.instagram.com/arfnyzeed_/?utm_source=ig_web_button_share_sheet" class="text-white block">@Arfan Yazeed</a>
-          <a href="https://www.instagram.com/nopal.errr?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" class="text-white block">@M. Naufal</a>
-          <a href="https://www.instagram.com/kpeinn?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" class="text-white block">@KEVIN_LONTONG</a>
-      </div>
-      <div>
-        <h5 class="text-lg font-bold mb-4">About Gloria-Hotel</h5>
-        <ul>
-          <li><a href="#" class="hover:underline">E-commerce & Global Distribution</a></li>
-          <li><a href="#" class="hover:underline">Architecture & Interior Design</a></li>
-          <li><a href="#" class="hover:underline">Good Governance</a></li>
-          <li><a href="#" class="hover:underline">Condotels</a></li>
-        </ul>
-      </div>
-      <div>
-        <h5 class="text-lg font-bold mb-4">Our Sosmed</h5>
-        <div class="flex space-x-4">
-          <a href="https://www.instagram.com/aby_olaa/?utm_source=ig_web_button_share_sheet"><box-icon name='instagram' type='logo' color='#ffffff' ></box-icon></a>
-          <a href=""><box-icon name='youtube' type='logo' color='#ffffff' ></box-icon></a>
-        </div>
-      </div>
-    </div>
-  </footer>
+  @component('layouts.footer')
+    
+  @endcomponent
 
   <script src="/js/navbar.js"></script>
 </body>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Hotel;
+use App\Models\Reservation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
@@ -27,7 +28,7 @@ class HotelController extends Controller
         $hotel-> save();
         // dd($hotel);
         session::flash('success','Add Hotel Successfully');
-        return redirect() -> back();
+        return redirect() -> route('hotel.dashboard.view');
     }
 
     
@@ -47,7 +48,7 @@ class HotelController extends Controller
         ]);
 
         session::flash('success','Update Hotel Successfully');
-        return redirect() -> back();
+        return redirect() -> route('hotel.dashboard.view');
         }
 
     public function destroy(Hotel $id)
@@ -55,6 +56,24 @@ class HotelController extends Controller
             $id->delete();
 
             session::flash('success','Delete Hotel Successfully');
-            return redirect() -> back();
+            return redirect() -> route('hotel.dashboard.view');
+    }
+
+    public function giveRating(Request $request,$id) {
+        $reservation = Reservation :: all() ->where('id', $request -> id) -> first();
+
+        DB::table('hotels')->where('id',$reservation -> rooms -> hotel -> id)->update([
+            'total_rating' => $reservation -> rooms -> hotel -> total_rating + 1,
+            'hotel_rating' => $reservation -> rooms -> hotel -> hotel_rating + $request -> hotel_rating ,
+        ]);
+
+
+        DB::table('reservations')->where('id',$id)->update([
+            'booking_status' => 'commented',
+        ]);
+
+
+     
+        return redirect() -> route('profile.riwayat');
     }
 }

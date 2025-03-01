@@ -206,7 +206,9 @@ Secret Deal up to 32% OFF
 </div>
 </div>
 </div>
-
+@component('layouts.footer')
+    
+@endcomponent
   <script src="/js/navbar.js"></script>
 
 </body>

@@ -5,15 +5,15 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     
-  <title>Dashboard - NiceAdmin Bootstrap Template</title>
+  <title>Dashboard - Manage Reservations</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
     <style>
-        #add-room-number {
+        table tbody tr td #add-room-number {
             display: none;
         }
-        #add-room-number.active {
+        table tbody tr td #add-room-number.active {
             display: flex;
         }
     </style>
@@ -79,18 +79,18 @@
 
     <div>
 
-      <table class="table table-striped table-sm flex items-center  ">
+      <table class="table table-striped table-sm flex items-center ">
         <thead>
           <tr>
             <th scope="col">No</th>
                     <th scope="col">Nama </th>
+                    <th scope="col">No Kamar</th>
               <th scope="col">Type Kamar</th>
-              <th scope="col">No Kamar</th>
               <th scope="col">Check In</th>
               <th scope="col">Check Out</th>
               <th scope="col">Status Payment</th>
               <th scope="col">Total Harga</th>
-              <th scope="col">Aksi</th>
+              <th scope="col">Aksi Booking</th>
             </tr>
           </thead>
           <tbody>
@@ -99,12 +99,17 @@
             <tr>
                 <td>{{ $loop->iteration  }}</td>
                 <td>{{ $item-> user -> name }}</td>
-                <td>{{ $item -> room -> roomtype -> roomtype_name }}</td>
-                <td>{{ $item -> room -> room_number }}</td>
+                @if ($item-> room_id == NULL)
+                  <td>Belum dapat kamar</td>
+                @endif
+                @if ($item-> room_id != NULL)
+                <td>{{ $item -> rooms -> room_number }}</td>
+                @endif
+                <td>{{ $item  -> roomtype -> roomtype_name }}</td>
                 <td>{{ $item -> checkin_date }}</td>
                 <td>{{ $item -> checkout_date }}</td>
                 <td>{{ $item -> payment_status }}</td>
-                <td>{{ number_format( date_diff(date_create($item -> checkin_date), date_create($item -> checkout_date)) ->format('%d') *   $item -> room -> roomtype -> price_per_day, 0 , ',' , '.') }}</td>
+                <td>{{ number_format( date_diff(date_create($item -> checkin_date), date_create($item -> checkout_date)) ->format('%d') *   $item  -> roomtype -> price_per_day, 0 , ',' , '.') }}</td>
               <td>
                   @if ($item-> booking_status == 'pending')
                   <div class="flex gap-2 flex-warp min-h-full">
@@ -120,7 +125,7 @@
                               <i class="bi bi-x"></i>
                             </a>
 
-                        <div id="add-room-number-btn" class="btn btn-primary btn-sm px-3 py-1">
+                        <div onclick="showForm({{ $item -> id - 1  }})" id="" class="add-room-number-btn btn btn-primary btn-sm px-3 py-1">
                             <i class="bi bi-check2"></i>
                         </div>
                         
@@ -129,38 +134,57 @@
 
 
                     @if ($item->booking_status == 'verified')
-                    <h1 class=" bg-green-500 text-slate-50 flex justify-center items-center font-bold py-2 rounded-full ">Verified </h1>
+                  
+                      <form action="{{ route('reservation.checkout', ['id' => $item -> id]) }}" method="POST" class=" bg-slate-900 text-slate-50 flex justify-center items-center font-bold py-2 rounded-full hover:cursor-pointer hover:text-slate-50 hover:bg-slate-700">
+                        @csrf
+                        @method('PUT')
+                        <button type="submit">Checkout</button>
+                      </form>
+                    @endif
+
+                    @if ($item->booking_status == 'checkout')
+                      <h1 class=" bg-green-500 text-slate-50 flex justify-center items-center font-bold py-2 rounded-full ">Checkout </h1>
+                    
                     @endif
 
                     @if ($item->booking_status == 'cancel')
                     <h1 class=" bg-red-500 text-slate-50 flex justify-center items-center font-bold py-2 rounded-full ">Cancel </h1>
                     @endif
+
+                    <form action="{{ route('reservation.verified', ['id' => $item -> id]) }}" method="POST" id="add-room-number" class=" absolute flex flex-col gap-2 px-2 top-0 2xl:left-20 xl:left-20 lg:left-20 md:left-20 sm:left-5 -left-28  justify-around items-center w-[350px] h-[300px] py-4 bg-slate-950 text-slate-50 shadow-xl translate-x-1/2 translate-y-1/2">
+                      @csrf
+                      @method('PUT')
+                      <div id="btn-close"  class=" hover:cursor-pointer flex justify-end text-sm w-full mr-2 flex-row">
+
+                        <h1 class="text-xl font-bold">X</h1>
+                        </div>
+                        <h1>{{ $item -> id }}</h1>
+                        <h1 class="text-xl font-bold">Add Room Number</h1>
+                        <select name="room_id" id="" class="w-11/12 h-[40px] outline-none shadow-md text-slate-950">
+                          @foreach ($rooms as $item )
+                          
+                          <option value="{{ $item -> id }}">{{ $item -> room_number }}</option>
+                          @endforeach
+                        </select>
+                        {{-- <input type="text" class=" text-black" value="{{ $item -> id }}" name="" id=""> --}}
+
+                        <input type="text" name="checkin_date" hidden disabled value="{{ $item -> checkin_date }}" id="" />
+                        
+                        <input type="text" name="checkout_date" hidden disabled value="{{ $item -> checkout_date }}" id="" />
+                        
+                        <div>
+                          <button class="btn btn-primary my-3 w-[330px]">Submit</button>
+                        </div>
+                      </form>
+                      @endforeach
                 </td>
             </tr>
           </tbody>
         </table>
       </div>
-
-      <form action="{{ route('reservation.verified', $item -> id) }}" method="POST" id="add-room-number" class=" absolute flex flex-col gap-2 px-2 justify-around items-center w-[350px] h-[300px] py-4 bg-slate-950 text-slate-50 shadow-xl translate-x-1/2">
-        @csrf
-        @method('PUT')
-        <div id="btn-close"  class=" hover:cursor-pointer flex justify-end text-sm w-full mr-2 flex-row">
-            <h1 class="text-xl font-bold">X</h1>
-          </div>
-          <h1 class="text-xl font-bold">Add Room Number</h1>
-          <select name="room_id" id="" class="w-11/12 h-[40px] outline-none shadow-md text-slate-950">
-            @foreach ($rooms as $item )
-            
-            <option value="{{ $item -> id }}">{{ $item -> room_number }}</option>
-            @endforeach
-          </select>
-          
-          <div>
-            <button class="btn btn-primary my-3 w-[330px]">Submit</button>
-          </div>
-        </form>
-        @endforeach
-   
+      
+      
+        
 </main><!-- End #main -->
 
 
@@ -179,17 +203,20 @@
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
   <script>
-        const addRoomNumber = document.getElementById('add-room-number')
-        const addRoomNumberBtn = document.getElementById('add-room-number-btn')
-        const btnClose = document.getElementById('btn-close')
+        const addRoomNumber = document.querySelectorAll('#add-room-number')
+        const addRoomNumberBtn = document.querySelectorAll('.add-room-number-btn')
+        const btnClose = document.querySelectorAll('#btn-close')
         const btnCancel = document.getElementById('btnCancel')
-        addRoomNumberBtn.addEventListener('click', function() {
-            addRoomNumber.classList.add('active')
-        })
 
-        btnClose.addEventListener('click', function() {
-            addRoomNumber.classList.remove('active')
-        })
+        function showForm(id) {
+          addRoomNumber[id].classList.add('active')
+        }
+
+        btnClose.forEach(e => {
+          e.addEventListener('click', function() {
+            addRoomNumber.forEach(e => e.classList.remove('active'))
+          })
+        });
 
         function cancelReservation(e) {
       e.preventDefault();
@@ -197,18 +224,18 @@
       const form = document.getElementById('form_cancel');
 
       Swal.fire({
-  title: "Are you sure?",
-  text: "You won't be able to revert this!",
-  icon: "warning",
-  showCancelButton: true,
-  confirmButtonColor: "#3085d6",
-  cancelButtonColor: "#d33",
-  confirmButtonText: "Yes, cancel reservation!"
-}).then((result) => {
-  if (result.isConfirmed) {
-    form.submit();
-  }
-});
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, cancel reservation!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        form.submit();
+      }
+    });
     }
     </script>
 </body>

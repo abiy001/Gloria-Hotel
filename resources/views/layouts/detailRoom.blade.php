@@ -4,14 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ $roomtype -> roomtype_name }} Room</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="/css/navbar.css">
 </head>
 <body class="bg-gray-100 h-full">
 
+
     @component('layouts.navbar')
         
     @endcomponent
+
     <div class="flex flex-col p-6 lg:flex-row min-h-screen gap-6 w-full">
         
         <!-- Room Details Section -->
@@ -61,28 +64,51 @@
 
         <!-- Booking Form Section -->
         <div class="2xl:w-2/4 xl:w-2/4 lg:w-2/4 w-full p-6 bg-white max-h-[600px] rounded-lg lg:h-auto  md:h-auto">
-            <h2 class="text-4xl font-semibold text-center text-black mb-24 py-2">Form Pemesanan</h2>
-            <form action="{{ route('reservation.submit') }}" method="POST" class="flex flex-col gap-4" enctype="multipart/form-data">
+            <h2 class="text-4xl font-semibold text-center text-black  py-2">Form Pemesanan</h2>
+            @session('error')
+                
+            <div class="flex flex-row items-center justify-center mb-10 mt-5 bg-red-500 text-white py-2 bg-opacity-80 font-bold text-center">
+                <h1>{{ session('error') }}</h1>
+            </div>
+            @endsession
+            <form action="{{ route('reservation.submit', ['guest_total' =>  $roomtype -> guest]) }}" method="POST" class=" mt-10 flex flex-col gap-4" enctype="multipart/form-data">
                 @csrf
                 <div class="mb-4">
                     <label for="checkin" class="block text-sm font-medium text-gray-600 mb-2">Tanggal Check-In</label>
-                    <input type="date" min="{{ date('Y-m-d') }}" id="checkin" name="checkin_date" class="w-full p-3 border rounded-md focus:ring-2 focus:ring-blue-400" required>
+                    <input type="date" onchange="handleOnChangeDate()" value="" min="{{ date('Y-m-d') }}" id="checkin" name="checkin_date" class="w-full p-3 border rounded-md focus:ring-2 focus:ring-blue-400" required>
                 </div>
                 <div class="mb-4">
                     <label for="checkout" class="block text-sm font-medium text-gray-600 mb-2">Tanggal Check-Out</label>
-                    <input name="checkout_date" type="date" min="{{ date('Y-m-d', strtotime("+1 day")) }}" max="{{ date('Y-m-d', strtotime("+7 day")) }}" id="checkout" name="checkout" class="w-full p-3 border rounded-md focus:ring-2 focus:ring-blue-400" required>
+                    <input onchange="handleOnChangeDate()" name="checkout_date" type="date" min="{{ date('Y-m-d', strtotime("+1 day")) }}" max="{{ date('Y-m-d', strtotime("+7 day")) }}" id="checkout" name="checkout" class="w-full p-3 border rounded-md focus:ring-2 focus:ring-blue-400" required>
                 </div>
-
-                <input type="text" name="guest_total"  disabled value="{{ $roomtype -> guest  }}" id="" />
-
-                <input type="text"  name="" id="" value="" />
+                
+                <input type="text"  name="room_type_id" hidden value="{{ $roomtype -> id  }}" />
+                <input type="text" hidden name="guest_total"  disabled value="{{ $roomtype -> guest  }}" />
+                <input type="text" hidden  name="hotel_id"   value="{{ $detailHotel -> id  }}" />
+                {{-- <input type="text"  name="rooms_roomtype_id"  value="{{ $roomtype -> id }}" /> --}}
                 <button type="submit" class="w-full bg-stone-950 text-white py-3 rounded-md hover:bg-stone-600 focus:ring-2 focus:ring-blue-400">
                     Booking Now
                 </button>
             </form>
         </div>
     </div>
-
+    @component('layouts.footer')
+    
+    @endcomponent
     <script src="/js/navbar.js"></script>
+    <script>
+        const checkin = document.getElementById('checkin');
+        const checkout = document.getElementById('checkout');
+       
+        function handleOnChangeDate() {
+            if(checkin.value > checkout.value) {
+                alert('Tanggal Check-In tidak boleh lebih besar dari Tanggal Check-Out');
+            }
+            
+            checkout.max = new Date(checkin.value).setDate(new Date(checkin.value).getDate() + 7);
+            checkout.min = checkin.value;
+        }
+
+    </script>
 </body>
 </html>

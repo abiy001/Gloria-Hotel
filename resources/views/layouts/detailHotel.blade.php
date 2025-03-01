@@ -14,7 +14,7 @@
     <link href="/images/logo-hotel/logo-hotel.png" rel="icon">
     <link href="/images/logo-hotel/logo-hotel.png" rel="apple-touch-icon">
     {{-- <link rel="shortcut icon" href="/images/logo-hotel/logo-hotel.png" type="image/x-icon"> --}}
-    <title>Detail Hotel</title>
+    <title>{{ $hotels -> hotel_name }}</title>
     <style>
         #show-all-btn :hover{
             background-color: {{ env('COLOR_1') }};
@@ -59,8 +59,16 @@
             <div class=" grid 2xl:grid-cols-2 xl:grid-cols-2 lg:grid-cols-2 grid-cols-1 gap-7 items-center">
 
             <div class="flex flex-col justify-between py-4 gap-3">
-                <div class=" text-4xl font-bold" style="color: {{ env('COLOR_1') }}">
-                    <h1>HOTEL CONTAINER</h1>
+                <div class=" flex flex-row items-center justify-between" >
+                    <h1 class=" uppercase text-4xl font-bold" style="color: {{ env('COLOR_1') }}">{{ $hotels -> hotel_name }}</h1>
+                    @if ($hotels -> hotel_rating != 0 || $hotels -> total_rating != 0)
+                    <div class=" flex flex-row items-center gap-2 text-2xl">
+                        <div class=" text-yellow-500 font-bold">
+                            <i class="ph-fill ph-star"></i>
+                        </div>
+                        <h1>{{ $hotels -> hotel_rating / $hotels -> total_rating }}</h1>
+                    </div>
+                    @endif
                 </div>
                 <div class=" mt-5">
                     <div class=" 2xl:w-[200px] xl:w-[200px] lg:w-[200px] w-full font-semibold">
@@ -219,7 +227,7 @@
             @endslot
 
             @slot('link')
-            {{ route('detailRoom', ['hotel' => $hotels->hotel_name ,'city'=> $hotels->city->city_name, 'room'=> $item->id]) }}
+            {{ route('detailRoom', ['city'=> $hotels->city->city_name,'hotel' => $hotels->hotel_name, 'room'=> $item->id ]) }}
             @endslot
 
             @slot('name')

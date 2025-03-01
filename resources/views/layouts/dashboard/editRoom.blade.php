@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Dashboard - NiceAdmin Bootstrap Template</title>
+  <title>Dashboard - Edit Room</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -68,17 +68,30 @@
             <option value="{{ $room -> room_status }}">{{ $room -> room_status }}</option>
             <option value="available">Available</option>
             <option value="not available">Not Available</option>
+            <option value="repairment">Repairment</option>
           </select>          
         </div>
 
                 <div class="col-12  ">
                     <label for="disabledTextInput" class="form-label py-5 text-xl font-semibold ">Room Type ID</label><br>
           <select class="form-control py-3 px-3 w-full border border-2 border-black rounded-lg px-3"  id="disabledTextInput" name="rooms_roomtype_id" placeholder="Room Type" required>
-            <option value="{{ $room -> rooms_roomtype_id }}">{{ $room -> rooms_roomtype_id }}</option>
-            <option value="available">Available</option>
-            <option value="not available">Not Available</option>
+            <option value="{{ $room -> rooms_roomtype_id }}">{{ $room -> roomtype -> roomtype_name }}</option>
+         @foreach ($roomType as $item)
+             <option value="{{ $item -> id }}">{{ $item -> roomtype_name }}</option>
+         @endforeach
           </select>          
         </div>
+
+        <div class="col-12">
+          <label for="disabledSelect" class="form-label py-5 text-xl font-semibold ">Hotel</label>
+          <select name="hotel_id" value=""  required class="form-control py-3 px-3 w-full border border-2 border-black rounded-lg px-3"  >
+            <option value="{{ $room -> hotel_id }}" disable selected hidden>{{ $room -> hotel -> hotel_name }}</option>
+            @foreach ($hotels as $item)
+            <option value="{{ $item -> id }}">{{ $item -> hotel_name}}</option>
+            @endforeach
+            
+            </select>  
+          </div>
 
             <button class="bg-green-400 p-2 mt-3 rounded-lg text-lg font-semibold" name="simpan" type="submit">Simpan</button>
           </form>

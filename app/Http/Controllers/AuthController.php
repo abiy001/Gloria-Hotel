@@ -34,8 +34,8 @@ class AuthController extends Controller
         $user -> nohp = $request -> nohp;
         $user-> save();
         // dd($user);
-        session::flash('success','register successfully');
-        return redirect() -> route('home');
+        // session::flash('success','register successfully');
+        return redirect() -> route('home') -> with('success','register successfully');
     }
 
     function login(Request $request) {
@@ -48,8 +48,7 @@ class AuthController extends Controller
                return redirect() -> route('dashboard');
             } else {
                 $request->session()->regenerate();
-                session::flash('success','login successfully');
-                return redirect() -> route('home');
+                return redirect() -> route('home') -> with('success','login successfully');
         }
        } else {
         session::flash('error', 'password or email is wrong');

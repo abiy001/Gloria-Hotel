@@ -21,10 +21,11 @@ class RoomController extends Controller
         $room -> room_number = $request -> room_number;
         $room -> rooms_roomtype_id = $request -> rooms_roomtype_id;
         $room -> room_status = 'available';
+        $room -> hotel_id = $request -> hotel_id;
         $room-> save();
         // dd($room);
         session::flash('success','Add Room Successfully');
-        return redirect() -> back();
+        return redirect() -> route('room.dashboard.view');
     }
 
     function update(Request $request, $id) {
@@ -41,15 +42,14 @@ class RoomController extends Controller
         ]);
 
         session::flash('success','Update Room Successfully');
-        return redirect() -> back();
+        return redirect() -> route('room.dashboard.view');
         }
 
          function destroy(Room $id)
             {
                 $id->delete();
                 
-
                 session::flash('success','Delete Room Successfully');
-                return redirect() -> back();
+                return redirect() -> route('room.dashboard.view');
             }
     }

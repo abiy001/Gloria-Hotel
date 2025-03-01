@@ -49,7 +49,7 @@ Route::get('/hotels', function () {
 
 Route::get('/hotels/{city}', function ($city) {
     $cities = City:: where ('city_name',$city) -> first();
-    $hotels = Hotel:: leftJoin('cities', 'hotels.city_id', '=', 'cities.id') -> where('cities.city_name', $city ) -> get();
+    $hotels = Hotel:: all() -> where('city_id', $cities->id);
     
     return view('layouts/hotelsByCity', compact('cities','hotels'));
 }) -> name('hotelsByCity');
@@ -71,6 +71,8 @@ Route::middleware(['auth',AuthAdmin :: class])->group(function () {
     Route::get('/dashboard-room', [AdminController::class, 'getRoom'])  -> name('room.dashboard.view');
     Route::get('/dashboard-roomType', [AdminController::class, 'getRoomType'])  -> name('roomType.dashboard.view');
     Route::get('/dashboard-hotel', [AdminController::class, 'getHotel'])  -> name('hotel.dashboard.view');
+    Route::get('/dashboard-laporanbulanan', [AdminController::class, 'getLaporanBulanan'])  -> name('laporanbulanan.dashboard.view');
+
 
     Route::get('/dashboard-room-edit/{id}', [AdminController::class, 'editRoom' ] )  -> name('editRoom.dashboard.view');
     Route::get('/dashboard-roomType-edit/{id}', [AdminController::class, 'editRoomType' ])  -> name('editRoomType.dashboard.view');
@@ -97,7 +99,7 @@ Route::middleware(['auth',AuthAdmin :: class])->group(function () {
     Route::put('/city/edit/{id}', [CityController::class, 'update']) -> name('city.edit');
     Route::put('/reservation/cancel/{id}', [ReservationController::class, 'cancel']) -> name('reservation.cancel');
     Route::put('/reservation/accept/{id}', [ReservationController::class, 'accept']) -> name('reservation.verified');
-    
+    Route::put('/reservation/checkout/{id}', [ReservationController::class, 'checkout_room']) -> name('reservation.checkout');
 
     Route::delete('/room/delete/{id}', [RoomController::class, 'destroy']) -> name('room.delete');
     Route::delete('/facility/delete/{id}', [FacilityController::class, 'destroy']) -> name('facility.delete');
@@ -110,6 +112,13 @@ Route::middleware(['auth',AuthAdmin :: class])->group(function () {
 
 Route::middleware(['auth',AuthUser :: class])->group(function () {
     Route::get('/profile', function () { return view('layouts/profile/dashboard-customer'); }) -> name('profile.dashboard.view');
+
+    Route::get('/profile/reservasi', function () {
+        $reservations = Reservation :: all() -> where('user_id', Auth::user() -> id) ;
+
+         return view('layouts/profile/reservasi',compact('reservations'));
+     }) -> name('profile.reservasi.view');
+
     Route::get('/booking', function () {
 
         $roomTypes= RoomType::all();
@@ -118,17 +127,44 @@ Route::middleware(['auth',AuthUser :: class])->group(function () {
 
         $roomType1 = Reservation :: leftJoin('rooms', 'reservations.room_id', '=' , 'rooms.id') -> where('checkin_date', '>=', date('Y-m-d'))->where('checkout_date', '<=', date('Y-m-d', strtotime("+1 day")))->where('payment_status', 'pending') ->where('room_status', 'available') -> where('booking_status', 'cancel') -> where('rooms.rooms_roomtype_id', 1) -> get();
 
-        // $roomType2 = Reservation :: leftJoin('rooms', 'reservations.room_id', '=' , 'rooms.id') -> where('checkin_date', '>=', date('Y-m-d'))->where('checkout_date', '<=', date('Y-m-d', strtotime("+1 day")))->where('payment_status', 'pending') ->where('rooms.room_status', 'available') -> where('booking_status', 'cancel') -> where('rooms.rooms_roomtype_id', 2) ;
 
         $roomType2 = Reservation :: leftJoin('rooms', 'reservations.room_id', '=', 'rooms.id') -> where('rooms.room_status', 'available') -> where('booking_status', 'cancel') -> where('rooms.rooms_roomtype_id', 2) -> where('payment_status', 'pending') -> where('checkin_date', '>=', date('Y-m-d'))->where('checkout_date', '<=', date('Y-m-d', strtotime("+1 day"))) -> get();
 
          return view('layouts/booking', compact('roomTypes', 'room1', 'room2','roomType1', 'roomType2')); 
         }) -> name('booking.view');
+
     Route::get('/profile/edit-profile', function () { return view('layouts/profile/edit-profile'); }) -> name('profile.edit-profile');
-    Route::get('/profile/riwayat', function () { return view('layouts/profile/riwayat'); }) -> name('profile.riwayat');
-    Route::get('/profile/status-resevasi', function () { return view('layouts/profile/status-reservasi'); }) -> name('profile.reservasi');
+
+    Route::get('/profile/riwayat', function () {
+        $pending_reservations = Reservation::all() -> where('user_id', Auth::user() -> id)->where('payment_status', 'pending');
+
+        $reservations = Reservation :: all() -> where('user_id', Auth::user() -> id) -> where('booking_status', 'checkout') ;
+
+         return view('layouts/profile/riwayat', compact('reservations', 'pending_reservations'));
+    }) -> name('profile.riwayat');
+
+    Route::get('/profile/belum-bayar', function () {
+        $reservations = Reservation :: all() -> where('user_id', Auth::user() -> id) -> where('payment_status', 'pending') -> where('booking_status', '!=' , 'cancel') ;
+
+         return view('layouts/profile/belum-bayar', compact('reservations'));
+    }) -> name('profile.riwayat.belumbayar');
+
+    Route::get('/profile/proses', function () {
+        $reservations = Reservation :: all() -> where('user_id', Auth::user() -> id) -> where('booking_status', 'pending') -> where('payment_status', 'paid') -> where('booking_status', '!=' , 'cancel') ;
+
+        $pending_reservations = Reservation::all() -> where('user_id', Auth::user() -> id)->where('payment_status', 'pending');
+
+         return view('layouts/profile/proses', compact('reservations','pending_reservations'));
+    }) -> name('profile.riwayat.proses');
+
     Route::put('/user/edit/{id}', [AuthController::class, 'update']) -> name('user.edit');
+
+    Route::get('/bayar/reservation/{id}', [UserViewController::class, 'bayarReservasi']) -> name('reservation.payment.view');
     
+    Route::put('/reservation/payment/{id}', [ReservationController::class, 'payment']) -> name('reservation.payment');
+    
+    Route::put('/hotel/rating/{id}', [HotelController::class, 'giveRating']) -> name('hotel.rating');
+
     Route::post('/reservation/submit', [ReservationController::class, 'post']) -> name('reservation.submit');
     Route::post('/comment/submit/', [CommentController::class, 'submitComment']) -> name('comment.submit');
 });

@@ -327,7 +327,9 @@
     </div>
   </section>
 </div>
-
+@component('layouts.footer')
+    
+@endcomponent
   <script src="/js/navbar.js"></script>
 </body>
 </html>

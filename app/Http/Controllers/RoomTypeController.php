@@ -25,11 +25,11 @@ class RoomTypeController extends Controller
         $roomtype -> roomtype_description = $request -> roomtype_description;
         $roomtype -> roomtype_image = $request-> roomtype_image -> move('images/roomtypes', $imageName);
         $roomtype -> price_per_day = $request -> price_per_day;
-        $roomtype -> guest = $request -> price_per_day;
+        $roomtype -> guest = $request -> guest;
         $roomtype -> save();
         // dd($room);
         session::flash('success','Add Room Type Successfully');
-        return redirect() -> back();
+        return redirect() -> route('roomType.dashboard.view');
     
     }
 
@@ -49,7 +49,7 @@ class RoomTypeController extends Controller
         ]);
 
         session::flash('success','Update Room Type Successfully');
-        return redirect() -> back();
+        return redirect() -> route('roomType.dashboard.view');
         }
 
         public function destroy(RoomType $id)
@@ -57,6 +57,6 @@ class RoomTypeController extends Controller
             $id->delete();
 
             session::flash('success','Delete Room Type Successfully');
-            return redirect() -> back();
+            return redirect() -> route('roomType.dashboard.view');
         }
 }
