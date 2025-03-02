@@ -49,75 +49,52 @@
             
             <!-- Konten Hotel -->
             @foreach ($reservations as $item)
-                
-              <div class="mb-2 mt-2">
-                 <div id="semua" class="tab-content block">
-                     <div class="border p-4 rounded-md mb-4 flex justify-between">
-                         <div>
-                             <h2 class="font-semibold text-lg">Pesanan Kamar Hotel {{ $item -> rooms -> hotel -> hotel_name }} Kelas {{ $item -> roomtype -> roomtype_name }}</h2>
-                <p class="text-gray-600">Status: {{ $item-> booking_status }}</p>
-                <div class="flex items-center gap-4 mt-2">
-                    <img src="{{url( $item -> roomtype -> roomtype_image )}}" class="w-64 h-32 rounded-md" alt="Produk">
-                    <div>
-                        <h2 class="uppercase text-gray-800 text-3xl font-medium">{{ $item -> roomtype -> roomtype_name }}</h2>
-                     
-                        <p class="text-gray-700">Check-in  : {{ $item -> checkin_date }}</p>
-                        <p class="text-gray-700">Check-out : {{ $item -> checkout_date }}</p>
-                        <h1 class="text-red-600 font-bold text-xl">Rp. {{ number_format( date_diff(date_create($item -> checkin_date), date_create($item -> checkout_date)) ->format('%d') *   $item  -> roomtype -> price_per_day, 0 , ',' , '.') }}</h1>
-                    </div>
-                </div>
-            </div>
-            <!-- Tombol Bayar di pojok kanan bawah -->
-            <div class="flex items-end">
-                @if ($item-> booking_status == 'checkout')
-                        <button
-                        onclick="giveRating({{ $loop -> index }})" class="rating-btn bg-black text-white px-4 py-2 rounded-lg hover:bg-slate-700">
-                            Rating
-                        </button>                 
-                @endif
-
-                @if ($item-> booking_status != 'checkout')
-                <button class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700">
-                    Selesai
-                </button>
-                @endif
-            </div>
-        </div>
-    </div>
-</div>
-
-<div  class="rating-form absolute hidden top-0 justify-center items-center   flex-col translate-x-1/2 w-full h-full bg-opacity-25 bg-slate-800  right-1/2 ">
-
-    <form action="{{ route('hotel.rating' , ['id' => $item  -> id]) }}" method="POST" enctype="multipart/form-data"  class="w-[250px]  flex flex-col gap-4 bg-slate-50  shadow-2xl  p-5" >
-        @csrf
-        @method('PUT')
-        <div onclick="closeBtn()" class="close-btn hover:cursor-pointer flex justify-end items-center font-bold text-xl">X</div>
-
-        <input type="text" name="reservation_id" value="{{ $item -> id  }}"  disabled id="" />
-
-
-        <select name="hotel_rating" id="">
-            <option value="{{ $item -> rooms -> hotel -> hotel_rating + 1 }}">1</option>
-            <option value="{{ $item -> rooms -> hotel -> hotel_rating + 2 }}">2</option>
-            <option value="{{ $item -> rooms -> hotel -> hotel_rating + 3 }}">3</option>
-            <option value="{{ $item -> rooms -> hotel -> hotel_rating + 4 }}">4</option>
-            <option value="{{ $item -> rooms -> hotel -> hotel_rating + 5 }}">5</option>
-        </select>
-      
-        @if ($item -> rooms -> hotel -> total_rating == 0)
+            @foreach ($reservations as $item)
+                 
+            @component('layouts.profile.cardRowReservation')
+            @slot('img')
+            {{ url( $item -> roomtype -> roomtype_image ) }}
+            @endslot
+ 
+            {{-- @slot('hotel_name')
+            {{ $item -> rooms -> hotel -> hotel_name }}
+            @endslot --}}
+ 
+            @slot('roomtypename')
+            {{ $item -> roomtype -> roomtype_name }}
+            @endslot
+ 
+            @slot('checkin')
+            {{ $item -> checkin_date }}
+            @endslot
+            @slot('checkout')
+            {{ $item -> checkout_date }}
+            @endslot
+            @slot('index')
+            {{ $loop -> index }}
+            @endslot
+ 
+            @slot('harga')
+            {{ number_format( date_diff(date_create($item -> checkin_date), date_create($item -> checkout_date)) ->format('%d') *   $item  -> roomtype -> price_per_day, 0 , ',' , '.') }}
+            @endslot
+ 
+            @slot('booking_status')
+            {{ $item -> booking_status }}
+            @endslot
             
-        <input type="text" name="total_rating" value="1"  disabled id="" />
-        @endif
-        
-        @if ($item -> rooms -> hotel -> total_rating > 0)
-        <input type="text" name="total_rating" value="{{ $item -> rooms -> hotel -> total_rating + 1 }}"  disabled id="" />
-        @endif
-        
-        <button class="rating-btn bg-black text-white px-4 py-2 rounded-lg hover:bg-slate-700">
-        Rating
-    </button>
-</form>
-</div>
+            @slot('payment_status')
+            {{ $item -> payment_status }}
+            @endslot
+ 
+            {{-- @slot('total_rating')
+            {{ $item -> rooms -> hotel -> total_rating + 1 }}
+            @endslot --}}
+ 
+            @slot('id')
+            {{ $item -> id }}
+            @endslot
+ 
+        @endcomponent
 
 @endforeach
 

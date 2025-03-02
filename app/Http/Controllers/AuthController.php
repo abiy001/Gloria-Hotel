@@ -69,17 +69,15 @@ class AuthController extends Controller
         $request->validate([
             'name' => 'required | string | ',
             'username' => 'required | string |',
-            'nohp' => 'required | numeric |',
         ]);
 
         DB::table('users')->where('id', $id)->update([
             'name' => $request -> name,
             'username' => $request -> username,
-            'nohp' => $request -> nohp,
         ]);
 
-        session::flash('success','Update user Successfully');
-        return redirect() -> route('profile.dashboard.view');
+        // session::flash('update-user','Update user Successfully');
+        return redirect() -> route('profile.dashboard.view') -> with('update-user','Update user Successfully');
         }
        
 }

@@ -111,13 +111,15 @@ Route::middleware(['auth',AuthAdmin :: class])->group(function () {
 });
 
 Route::middleware(['auth',AuthUser :: class])->group(function () {
-    Route::get('/profile', function () { return view('layouts/profile/dashboard-customer'); }) -> name('profile.dashboard.view');
+    Route::get('/profile', function () { return view('layouts/profile/profile'); }) -> name('profile.dashboard.view');
 
     Route::get('/profile/reservasi', function () {
         $reservations = Reservation :: all() -> where('user_id', Auth::user() -> id) ;
 
          return view('layouts/profile/reservasi',compact('reservations'));
      }) -> name('profile.reservasi.view');
+
+     Route::get('/profile/edit-profile', function () { return view('layouts/profile/edit-profile'); }) -> name('profile.edit-profile');
 
     Route::get('/booking', function () {
 
@@ -132,8 +134,6 @@ Route::middleware(['auth',AuthUser :: class])->group(function () {
 
          return view('layouts/booking', compact('roomTypes', 'room1', 'room2','roomType1', 'roomType2')); 
         }) -> name('booking.view');
-
-    Route::get('/profile/edit-profile', function () { return view('layouts/profile/edit-profile'); }) -> name('profile.edit-profile');
 
     Route::get('/profile/riwayat', function () {
         $pending_reservations = Reservation::all() -> where('user_id', Auth::user() -> id)->where('payment_status', 'pending');

@@ -47,34 +47,53 @@
             @endcomponent
             
              <!-- Konten Hotel -->
-             @foreach ($reservations as  $item)
+            @foreach ($reservations as $item)
                  
-             <div class="mb-2 mt-2">
-                 <div id="semua" class="tab-content block">
-                     <div class="border p-4 rounded-md mb-4 flex justify-between">
-                         <div>
-                             <h2 class="font-semibold text-lg">Pesanan Kamar Hotel Kelas {{ $item -> roomtype -> roomtype_name }}</h2>
-                <p class="text-gray-600">Status: {{ $item-> booking_status }}</p>
-                <div class="flex items-center gap-4 mt-2">
-                    <img src="{{url( $item -> roomtype -> roomtype_image )}}" class="w-64 h-32 rounded-md" alt="Produk">
-                    <div>
-                        <h2 class="uppercase text-gray-800 text-3xl font-medium">{{ $item -> roomtype -> roomtype_name }}</h2>
-                     
-                        <p class="text-gray-700">Check-in  : {{ $item -> checkin_date }}</p>
-                        <p class="text-gray-700">Check-out : {{ $item -> checkout_date }}</p>
-                        <h1 class="text-red-600 font-bold text-xl">Rp. {{ number_format( date_diff(date_create($item -> checkin_date), date_create($item -> checkout_date)) ->format('%d') *   $item  -> roomtype -> price_per_day, 0 , ',' , '.') }}</h1>
-                    </div>
-                </div>
-            </div>
-            <div class="flex items-end">
-                <button class="bg-yellow-400 text-white px-4 py-2 rounded-lg hover:bg-yellow-500">
-                    Menunggu
-                </button>
-            </div>
-        </div>
-    </div>
-</div>
-@endforeach
+            @component('layouts.profile.cardRowReservation')
+            @slot('img')
+            {{ url( $item -> roomtype -> roomtype_image ) }}
+            @endslot
+ 
+            {{-- @slot('hotel_name')
+            {{ $item -> rooms -> hotel -> hotel_name }}
+            @endslot --}}
+ 
+            @slot('roomtypename')
+            {{ $item -> roomtype -> roomtype_name }}
+            @endslot
+ 
+            @slot('checkin')
+            {{ $item -> checkin_date }}
+            @endslot
+            @slot('checkout')
+            {{ $item -> checkout_date }}
+            @endslot
+            @slot('index')
+            {{ $loop -> index }}
+            @endslot
+ 
+            @slot('harga')
+            {{ number_format( date_diff(date_create($item -> checkin_date), date_create($item -> checkout_date)) ->format('%d') *   $item  -> roomtype -> price_per_day, 0 , ',' , '.') }}
+            @endslot
+ 
+            @slot('booking_status')
+            {{ $item -> booking_status }}
+            @endslot
+            
+            @slot('payment_status')
+            {{ $item -> payment_status }}
+            @endslot
+ 
+            {{-- @slot('total_rating')
+            {{ $item -> rooms -> hotel -> total_rating + 1 }}
+            @endslot --}}
+ 
+            @slot('id')
+            {{ $item -> id }}
+            @endslot
+ 
+        @endcomponent
+            @endforeach
     
 
     <script>

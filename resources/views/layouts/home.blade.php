@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="css/home.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="/images/logo-hotel/logo-hotel.png" rel="icon">
+    <link href="/images/logo-hotel/logo-hotel.png" rel="apple-touch-icon">
+
     <title>Home</title>
 
 </head>

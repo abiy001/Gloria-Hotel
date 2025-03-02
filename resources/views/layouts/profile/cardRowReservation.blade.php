@@ -36,7 +36,7 @@
    </button>
    @endif
 
-   @if ($booking_status == 'verified')
+   @if ($booking_status == 'pending' && $payment_status == 'paid')
    <button class="bg-yellow-600 text-white px-4 py-2 rounded-lg hover:bg-yellow-700">
        Sedang DiProses
    </button>

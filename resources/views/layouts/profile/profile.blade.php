@@ -4,11 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
     <title>Profile</title>
 </head>
 <body>
+    @if (session('update-user')) 
+    <script>
+        Swal.fire({
+    position: "top-center",
+    icon: "success",
+    title: "{{ session('success') }}",
+    showConfirmButton: false,
+    timer: 1500
+    });
+    </script>
+    
+    @endif
+
     <div class="w-full flex flex-col lg:flex-row">
 
     <!-- Navbar (Only for Small Screens) -->
@@ -53,26 +67,41 @@
         </div>
 
         <!-- Content Area -->
-        <main class="flex-grow p-6 sm:p-12 lg:p-32 mt-16 lg:mt-0">
-            <div class="flex justify-center items-center p-4 sm:p-8">
-                <div class="relative bg-gray shadow-lg rounded-lg p-6 sm:p-8 w-full max-w-sm sm:max-w-lg">
-                    <div class="flex justify-center -mt-16 sm:-mt-24">
-                        <img class="w-24 h-24 sm:w-40 sm:h-40 rounded-full shadow-lg border-4" style="border-color: {{ env('COLOR_3') }}" src="{{url('/images/hotels/hotel1.jpg')}}" alt="Profile Picture">
-                    </div>
-                    <div class="text-center mt-6 sm:mt-8">
-                        <h1 class="text-2xl sm:text-3xl font-bold text-gray-800">Nama Lengkap</h1>
-                        <p class="text-base sm:text-lg text-gray-500 mt-2">Username</p>
-                        <p class="text-base sm:text-lg text-gray-500">Email</p>
-                        <p class="text-base sm:text-lg text-gray-500">No Handphone</p>
-                        <a href="Edit-Profile">
-                            <button type="submit" class="bg-blue-700 mt-4 sm:mt-6 py-2 px-4 sm:px-6 rounded-lg text-white text-sm sm:text-lg hover:bg-blue-800 focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50">
-                                Edit
-                            </button>
-                        </a>
-                    </div>
+        <main class="flex-grow  container mx-auto p-6">
+            <h1 class="text-xl font-bold mb-6">Edit Your Profile</h1>
+            <form action="{{ route('user.edit', Auth::user()->id) }}" method="POST" enctype="multipart/form-data" class="space-y-4">
+                @csrf
+                @method('PUT')
+             
+                <div class="text-slate-900">
+                  <label for="name" class="block  font-semibold mb-1">Nama Lengkap</label>
+                  <input value="{{ Auth::user()->name }}" type="text" id="name" name="name" class="bg-gray-100 border shadow-2xl w-full border-gray-600 rounded-xl px-3 py-2 outline-none" />
                 </div>
-            </div>
-        </main>
+    
+                <div class="text-slate-900">
+                  <label for="username" class="block  font-semibold mb-1">Username</label>
+                  <input value="{{ Auth::user()-> username }}" type="text" id="username" name="username" class="bg-gray-100 border shadow-2xl w-full border-gray-600 rounded-xl px-3 py-2 outline-none" />
+                </div>
+    
+                <div class="text-slate-900">
+                  <label for="email" class="block  font-semibold mb-1">Email</label>
+                  <input disabled value="{{ Auth::user()->email }}" type="email" id="email" name="email" class="bg-gray-100 border shadow-2xl w-full border-gray-600 rounded-xl px-3 py-2 outline-none" />
+                </div>
+    
+                <div class="text-slate-900">
+                  <label for="phone" class="block  font-semibold mb-1">Nomor Handphone</label>
+                  <input disabled value=" {{ Auth::user()->nohp }}" type="tel" id="phone" name="" class="bg-gray-100 border shadow-2xl w-full border-gray-600 rounded-xl px-3 py-2 outline-none" />
+                </div>
+    
+                <div class="flex justify-end">
+                      
+                  <button type="submit" class="bg-[{{ env('COLOR_1') }}] text-white py-2 px-4 rounded-lg shadow cursor-pointer focus:ring-2 focus:ring-blue-400">
+                    Simpan Perubahan
+                  </button>
+                   
+                </div>
+              </form>
+            </main>
     </div>
 
     <script>
