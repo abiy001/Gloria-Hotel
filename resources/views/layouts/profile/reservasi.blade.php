@@ -49,9 +49,12 @@
              <!-- Konten Hotel -->
    @foreach ($reservations as $item)
        @component('layouts.profile.cardRowReservation')
-           @slot('img')
-           {{ url( $item -> roomtype -> roomtype_image ) }}
-           @endslot
+       @slot('img')
+       {{ url( $item -> hotel -> hotel_image ) }}
+       @endslot
+       @slot('hotel_name')
+       {{ $item -> hotel -> hotel_name  }}
+       @endslot
 
            {{-- @slot('hotel_name')
            {{ $item -> rooms -> hotel -> hotel_name }}

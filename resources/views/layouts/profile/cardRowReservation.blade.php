@@ -7,7 +7,7 @@
    <div class="flex items-center gap-4 mt-2">
       <img src="{{$img}}" class="w-64 h-32 rounded-md" alt="Produk">
        <div class=" flex flex-col">
-           <h1 class="uppercase mb-3 text-gray-800 text-3xl font-bold">{{ $roomtypename }}</h1>
+           <h1 class="uppercase mb-3 text-gray-800 text-3xl font-bold">{{ $hotel_name }}</h1>
            <p class="text-gray-700">Check-in  : {{ $checkin }}</p>
            <p class="text-gray-700">Check-out : {{ $checkout }}</p>
            <h1 class="text-red-600 font-bold text-xl">Rp. {{ $harga }}</h1>

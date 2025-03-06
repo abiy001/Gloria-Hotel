@@ -68,7 +68,7 @@ Route::middleware(['auth',AuthAdmin :: class])->group(function () {
     Route::get('/dashboard/', [AdminController::class, 'index'])  -> name('dashboard');
     Route::get('/dashboard-facility', [AdminController::class, 'getFacility'])  -> name('facility.dashboard.view');
     Route::get('/dashboard-city', [AdminController::class, 'getCity'])  -> name('city.dashboard.view');
-    Route::get('/dashboard-room', [AdminController::class, 'getRoom'])  -> name('room.dashboard.view');
+    Route::get('/dashboard-room', [AdminController::class, 'getRoom', ['sort' => 'nomorKamarTerkecil']])  -> name('room.dashboard.view');
     Route::get('/dashboard-roomType', [AdminController::class, 'getRoomType'])  -> name('roomType.dashboard.view');
     Route::get('/dashboard-hotel', [AdminController::class, 'getHotel'])  -> name('hotel.dashboard.view');
     Route::get('/dashboard-laporanbulanan', [AdminController::class, 'getLaporanBulanan'])  -> name('laporanbulanan.dashboard.view');

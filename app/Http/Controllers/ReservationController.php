@@ -18,10 +18,14 @@ class ReservationController extends Controller
 
         ]);
 
-        $roomNullExist = Room:: all() -> where('room_status', 'available') -> where('checkin_date','=', NULL) -> where('checkout_date','=', NULL) -> where('hotel_id',)-> where('hotel_id', $request -> hotel_id)-> count();
-        $roomExist = Room:: all() -> where('room_status', 'available') -> where('checkout_date', '>=', $request -> checkin_date) -> where('hotel_id', $request -> hotel_id) -> count();
+        $roomNullExist = Room:: all() -> where('checkin_date','=', NULL) -> where('checkout_date','=', NULL) -> where('hotel_id',)-> where('hotel_id', $request -> hotel_id)-> count();
 
-        $reservationExist = Reservation :: all() -> where('checkin_date', '>=', $request -> checkin_date)->where('checkout_date', '<=', $request -> checkout_date) -> where('user_id', Auth::user()->id) -> where('payment_status', 'pending')  -> count();
+        $roomExist = Room:: all() -> where('checkout_date', '<=', $request -> checkin_date) -> where('hotel_id', $request -> hotel_id) -> count();
+
+        $reservationExist = Reservation :: all() -> where('checkin_date', '>=', $request -> checkin_date)->where('checkout_date', '<=', $request -> checkout_date)  -> count();
+
+
+        $reservationByUser = Reservation :: all() ->where('user_id', Auth::user()->id) -> count();  
 
         if($roomExist > 0 && $reservationExist <= 0 || $roomNullExist > 0 && $reservationExist <= 0) {
             $reservation = new Reservation();
@@ -29,6 +33,7 @@ class ReservationController extends Controller
             $reservation -> checkin_date = $request -> checkin_date;
             $reservation -> checkout_date = $request -> checkout_date;
             $reservation -> room_type_id = $request -> room_type_id;
+            $reservation -> hotel_id = $request -> hotel_id;
             $reservation -> payment_status = 'pending';
             $reservation -> booking_status = 'pending';
             $reservation -> user_id = Auth::user()->id;
@@ -37,7 +42,7 @@ class ReservationController extends Controller
 
             session::flash('success','Pay the bill in your profile');
             return redirect() -> route('profile.dashboard.view');
-        } else if($reservationExist > 0) {
+        } else if($re > 0) {
 
             session::flash('error','You have a pending reservation'); 
             return redirect() -> back();

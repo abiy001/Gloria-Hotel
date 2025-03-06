@@ -114,9 +114,9 @@
                 
             <tr>
                 <td>{{ $loop->iteration  }}</td>
-                <td>{{ $item-> user -> name }}</td>
-                <td>{{ $item -> room -> room_number }}</td>
-                <td>{{ $item -> room -> roomtype -> roomtype_name }}</td>
+                <td>{{ $item -> user -> name }}</td>
+                <td>{{ $item -> rooms -> room_number }}</td>
+                <td>{{ $item  -> roomtype -> roomtype_name }}</td>
                 <td>{{ $item -> checkin_date }}</td>
                 <td>{{ $item -> checkout_date }}</td>
             </tr>
@@ -125,10 +125,7 @@
         </table>
     </div>
 
-    <div class="static h-screen w-full ">
-      <div class="fixed bottom-0 right-2 h-16 w-16 ">
-      <a href="{{ route('addRoom.dashboard.view') }}" class="bg-dark text-white rounded-lg px-4 py-3 "><i class="bi bi-plus"></i></a>
-    </div>
+ 
   </div>
   </main><!-- End #main -->
 

@@ -15,7 +15,6 @@ class HotelController extends Controller
             'hotel_name' => 'required | string | unique:hotels',
             'hotel_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'hotel_description' => 'required | string',
-
         ]);
 
         $imageName = time().'.'.$request->hotel_image->extension();  

@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
-    <title>Profile</title>
+    <title>Belum Bayar</title>
 </head>
 <body class="flex flex-col min-h-screen">
     
@@ -52,7 +52,11 @@
                  
              @component('layouts.profile.cardRowReservation')
              @slot('img')
-             {{ url( $item -> roomtype -> roomtype_image ) }}
+             {{ url( $item -> hotel -> hotel_image ) }}
+             @endslot
+ 
+             @slot('hotel_name')
+             {{ $item -> hotel -> hotel_name  }}
              @endslot
   
              {{-- @slot('hotel_name')

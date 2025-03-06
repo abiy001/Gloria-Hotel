@@ -14,7 +14,8 @@ class RoomTypeController extends Controller
             'roomtype_name' => 'required | string | unique:room_types',
             'roomtype_description' => 'required | string',
             'roomtype_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'price_per_day' => 'required | numeric',
+            'price_per_day' => 'required | numeric | digits_between:1,10',
+
         ]);
 
         $imageName = time().'.'.$request->roomtype_image->extension();  
@@ -37,7 +38,7 @@ class RoomTypeController extends Controller
         $request->validate([
             'roomtype_name' => 'required | string | unique:room_types',
             'roomtype_description' => 'required | string',
-            'price_per_day' => 'required | numeric',
+            'price_per_day' => 'required | numeric | digits_between:1,10',
         ]);
 
         DB::table('room_types')->where('id',$id)->update([

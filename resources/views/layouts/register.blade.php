@@ -14,7 +14,7 @@
 
         <div class=" flex flex-col gap-2">
             <label class=" font-semibold text-slate-900">No HP</label>
-            <input type="text" oninput="this.value = this.value.replace(/[^0-13.]/g, '').replace(/(\..*)\./g, '$1');" inputmode="numeric" name="nohp" class=" w-full px-2 py-2 rounded-md border border-slate-900">
+            <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" inputmode="numeric" name="nohp" class=" w-full px-2 py-2 rounded-md border border-slate-900">
         </div>
 
         <div class=" flex flex-col gap-2">

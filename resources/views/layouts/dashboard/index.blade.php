@@ -158,10 +158,9 @@
 
                         <h1 class="text-xl font-bold">X</h1>
                         </div>
-                        <h1>{{ $item -> id }}</h1>
                         <h1 class="text-xl font-bold">Add Room Number</h1>
                         <select name="room_id" id="" class="w-11/12 h-[40px] outline-none shadow-md text-slate-950">
-                          @foreach ($rooms as $item )
+                          @foreach ($rooms -> where('hotel_id', $item  -> hotel_id  ) -> where('rooms_roomtype_id', $item -> room_type_id)  -> where('checkout_date','<=', $item -> checkin_date ) as $item )
                           
                           <option value="{{ $item -> id }}">{{ $item -> room_number }}</option>
                           @endforeach
