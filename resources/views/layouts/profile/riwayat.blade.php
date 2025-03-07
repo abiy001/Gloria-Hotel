@@ -20,8 +20,7 @@
     @component('layouts.profile.mobileNavbar')
         
     @endcomponent
-
-    <div class="flex flex-col relative lg:flex-row flex-grow">
+    <div class="flex flex-col lg:flex-row flex-grow">
         <!-- Sidebar (Only for Large Screens) -->
         <div class="hidden lg:flex flex-col w-80 min-h-screen bg-opacity-90 p-6" style="background-color: {{ env('COLOR_1') }}; color: {{ env('COLOR_2') }}">
             <div class="relative flex flex-col items-center text-center p-6 rounded-lg" style="background-color: {{ env('COLOR_3') }};">
@@ -34,9 +33,9 @@
                 </div>
             </div>
             <!-- Navigation -->
-           @component('layouts.profile.aside')
-               
-           @endcomponent
+            @component('layouts.profile.aside')
+                
+            @endcomponent
         </div>
         
         <!-- Content Area -->
@@ -47,8 +46,7 @@
             @endslot
             @endcomponent
             
-            <!-- Konten Hotel -->
-            @foreach ($reservations as $item)
+             <!-- Konten Hotel -->
             @foreach ($reservations as $item)
                  
             @component('layouts.profile.cardRowReservation')
@@ -57,8 +55,9 @@
             @endslot
 
             @slot('hotel_name')
-            {{ $item -> hotel -> hotel_name  }}
-            @endslot
+             {{ $item -> hotel -> hotel_name  }}
+             @endslot
+ 
             {{-- @slot('hotel_name')
             {{ $item -> rooms -> hotel -> hotel_name }}
             @endslot --}}
@@ -98,8 +97,10 @@
             @endslot
  
         @endcomponent
-
-@endforeach
+            @endforeach
+        </div>
+    </div>
+    
 
     <script>
         const closeBtn = document.querySelectorAll('.close-btn');

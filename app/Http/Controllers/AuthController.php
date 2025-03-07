@@ -22,16 +22,17 @@ class AuthController extends Controller
             'username' => 'required | string',
             'email' => 'required | email | unique:users',
             'password' => 'required | string | min:8',
-            'nohp' => 'required  | numeric | digits_between:10,13 ',
+            'nohp' => 'required | numeric | digits_between:10,13 ',
+            // 'nohp' => 'required|min:8|max:11|regex:/^([0-9\s\-\+\(\)]*)$/',
         ]);
 
         $user = new User();
         $user -> name = $request -> name;
-        $user -> username = $request -> username;
+        $user -> nohp = $request -> nohp;
         $user -> email = $request -> email;
+        $user -> username = $request -> username;
         $user -> password = bcrypt($request -> password);
         $user -> role = 'user';
-        $user -> nohp = $request -> nohp;
         $user-> save();
         // dd($user);
         // session::flash('success','register successfully');

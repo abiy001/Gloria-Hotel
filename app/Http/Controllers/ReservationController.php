@@ -42,7 +42,7 @@ class ReservationController extends Controller
 
             session::flash('success','Pay the bill in your profile');
             return redirect() -> route('profile.dashboard.view');
-        } else if($re > 0) {
+        } else if($reservationByUser > 0) {
 
             session::flash('error','You have a pending reservation'); 
             return redirect() -> back();

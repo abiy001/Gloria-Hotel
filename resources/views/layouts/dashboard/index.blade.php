@@ -85,6 +85,7 @@
             <th scope="col">No</th>
                     <th scope="col">Nama </th>
                     <th scope="col">No Kamar</th>
+                    <th scope="col">Hotel</th>
               <th scope="col">Type Kamar</th>
               <th scope="col">Check In</th>
               <th scope="col">Check Out</th>
@@ -105,6 +106,7 @@
                 @if ($item-> room_id != NULL)
                 <td>{{ $item -> rooms -> room_number }}</td>
                 @endif
+                <td>{{ $item -> hotel -> hotel_name }}</td>
                 <td>{{ $item  -> roomtype -> roomtype_name }}</td>
                 <td>{{ $item -> checkin_date }}</td>
                 <td>{{ $item -> checkout_date }}</td>
