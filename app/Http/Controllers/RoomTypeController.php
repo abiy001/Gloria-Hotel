@@ -44,7 +44,6 @@ class RoomTypeController extends Controller
         DB::table('room_types')->where('id',$id)->update([
             'roomtype_name' => $request -> roomtype_name,
             'roomtype_description'=> $request -> roomtype_description,
-            'roomtype_image' => $request -> roomtype_image,
             'price_per_day' => $request -> price_per_day,
             'guest' => $request -> guest,
         ]);
@@ -55,7 +54,7 @@ class RoomTypeController extends Controller
 
         public function destroy(RoomType $id)
         {
-            $id->delete();
+            $id->delete() ;
 
             session::flash('success','Delete Room Type Successfully');
             return redirect() -> route('roomType.dashboard.view');
