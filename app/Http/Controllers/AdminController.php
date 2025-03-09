@@ -20,7 +20,7 @@ class AdminController extends Controller
         return view('layouts/dashboard/index', compact('reservation','rooms'));
     }
 
-    function getRoom($sort = null) {
+    function getRoom($sort = 'nomorKamarTerkecil') {
         $roomtypes = RoomType::all();
 
         if ($sort == 'nomorKamarTerkecil') {

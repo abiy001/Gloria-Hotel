@@ -64,7 +64,6 @@
                 <div class="col-12">
                   <label for="disabledSelect" class="form-label">Type Kamar</label>
                   <select name="rooms_roomtype_id" value=""   class="form-select" id="disabledSelect" name="jenis" required>
-                    <option value="1" disable selected hidden>Reguler</option>
                     @foreach ($roomType as $item)
                     <option value="{{ $item -> id }}">{{ $item -> roomtype_name}}</option>
                     @endforeach
