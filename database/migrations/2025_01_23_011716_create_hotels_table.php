@@ -19,7 +19,7 @@ return new class extends Migration
             $table -> unsignedBigInteger('city_id');
             $table -> integer('hotel_rating') -> default(0);
             $table -> integer('total_rating') -> default(0);
-            $table->foreign('city_id')->references('id')->on('cities');
+            $table->foreign('city_id')->references('id')->on('cities') ->onDelete('cascade');
             $table->timestamps();
         });
     }

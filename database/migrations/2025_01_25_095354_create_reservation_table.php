@@ -17,10 +17,10 @@ return new class extends Migration
             $table->unsignedBigInteger('hotel_id');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('room_type_id');
-            $table->foreign('room_id')->references('id')->on('rooms') ;
-            $table->foreign('hotel_id')->references('id')->on('hotels'); ;
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('room_type_id')->references('id')->on('room_types');
+            $table->foreign('room_id')->references('id')->on('rooms') ->onDelete('cascade'); ;
+            $table->foreign('hotel_id')->references('id')->on('hotels') ->onDelete('cascade'); ;
+            $table->foreign('user_id')->references('id')->on('users') ->onDelete('cascade'); ;
+            $table->foreign('room_type_id')->references('id')->on('room_types') ->onDelete('cascade'); ;
             $table->date('checkin_date');
             $table->date('checkout_date');
             $table->string('payment_status') -> default('pending');

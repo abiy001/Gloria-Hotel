@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('room_status') -> default('available'); ;
             $table->unsignedBigInteger('rooms_roomtype_id');
             $table->unsignedBigInteger('hotel_id');
-            $table->foreign('rooms_roomtype_id')->references('id')->on('room_types');
-            $table->foreign('hotel_id')->references('id')->on('hotels');
+            $table->foreign('rooms_roomtype_id')->references('id')->on('room_types') ->onDelete('cascade');
+            $table->foreign('hotel_id')->references('id')->on('hotels') ->onDelete('cascade');
             $table -> date('checkin_date') -> nullable();
             $table -> date('checkout_date') -> nullable();
             $table->timestamps();

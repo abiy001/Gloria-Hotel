@@ -80,7 +80,7 @@
                         <div class="col-12 flex flex-col gap-3">
                             <label for="disabledSelect" class="form-control ">Room Type Image</label>
                             <img class=" max-h-[600px] w-64 my-4" src="{{ url($roomType -> roomtype_image ) }}" alt="">
-                            <input type="file" class="form-control" name="roomtype_image" hidden value="{{ $roomType -> roomtype_image }}" id="">
+                            {{-- <input type="file" class="form-control" name="roomtype_image" hidden value="{{ $roomType -> roomtype_image }}" id=""> --}}
         
                         </div>
 

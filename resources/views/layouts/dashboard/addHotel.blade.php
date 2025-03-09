@@ -69,7 +69,7 @@
                 <div class="col-12">
                     <label for="disabledSelect" class="form-label">City</label>
                     <select value="" class="form-select" id="disabledSelect" name="city_id" required>
-                        <option value="1" disable selected hidden>Type Kamar</option>
+                        {{-- <option value="1" disable selected hidden></option> --}}
                         @foreach ($city as $item) 
                             
                         <option value="{{ $item -> id }}">{{ $item -> city_name }}</option>

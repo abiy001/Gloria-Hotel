@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Dashboard - NiceAdmin Bootstrap Template</title>
+  <title>Dashboard - Edit Hotel</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -54,17 +54,17 @@
             <div class="col-12">
                 <label for="disabledTextInput" class="form-label w-full">Hotel Name</label>
                       <div class="input-group has-validation">
-                        <input type="text" class="form-control mb-3" id="disabledTextInput" name="hotel_name" value="{{ $hotel -> hotel_name }}" placeholder="Hotel Name" required>
+                        <input type="text"class="form-control w-full border border-2 rounded-lg border-black py-3 px-3" id="disabledTextInput" name="hotel_name" value="{{ $hotel -> hotel_name }}" placeholder="Hotel Name" required>
                         
                         <div class="col-12 mb-3">
                             <label for="disabledSelect" class="form-label">Hotel Description</label>
-                            <input type="text" class="form-control" value="{{ $hotel -> hotel_description }}" class="mb-3" id="disabledTextInput" name="hotel_description" placeholder="No Kamar" required />
+                            <input type="text" class="form-control w-full border border-2 rounded-lg border-black py-3 px-3" value="{{ $hotel -> hotel_description }}"  id="disabledTextInput" name="hotel_description" placeholder="No Kamar" required />
                         </div> 
         
                         <div class="col-12">
                             <label for="disabledSelect" class="form-label">City</label>
-                            <select value=""  class="form-select" id="disabledSelect" name="city_id" required>
-                                <option value="{{ $hotel -> city_id }}" disable selected hidden>{{ $hotel -> city_id }}</option>
+                            <select value=""  class="form-control w-full border border-2 rounded-lg border-black py-3 px-3" id="disabledSelect" name="city_id" required>
+                                <option value="{{ $hotel -> city_id }}" disable selected hidden>{{ $hotel -> city -> city_name }}</option>
                                 @foreach ($city as $item) 
                                     
                                 <option value="{{ $item -> id }}">{{ $item -> city_name }}</option>
