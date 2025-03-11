@@ -8,6 +8,7 @@ use App\Models\Hotel;
 use App\Models\Reservation;
 use App\Models\Room;
 use App\Models\RoomType;
+use GuzzleHttp\Psr7\Query;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -20,18 +21,25 @@ class AdminController extends Controller
         return view('layouts/dashboard/index', compact('reservation','rooms'));
     }
 
-    function getRoom($sort = 'nomorKamarTerkecil') {
+    function getRoom(Request $request) {
         $roomtypes = RoomType::all();
+        
+        $query = Room::query();
 
-        if ($sort == 'nomorKamarTerkecil') {
-            $room = Room::orderBy('room_number', 'asc')->get();
-        } else if ($sort == 'nomorKamarTerbesar') {
-            $room = Room::orderBy('room_number', 'desc')->get();
-        } else if ($sort == 'available') {
-            $room = Room::where('room_status', 'available')->get();
+        if ( $request -> sort ==  'nomorKamarTerkecil') {
+            $query -> orderBy('room_number', 'asc') ;
+            $room =  $query -> get() ;
+        } else if ($request -> sort ==  'nomorKamarTerbesar')  {
+            $query -> orderBy('room_number', 'desc') ;
+            $room =  $query -> get() ;
+        } else if ($request -> sort ==  'available') {
+            $query -> where('room_status', 'available') ;
+            $room =  $query -> get() ;
         }  else {
-             $room = Room::all();
+            $query ;
+            $room =  $query -> get() ;
         }
+
 
         return view('layouts/dashboard/room', compact('roomtypes','room'));
     }

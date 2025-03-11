@@ -79,17 +79,36 @@
         <div id="dropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700">
             <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
               <li>
-                <a href="{{ route("room.dashboard.view" , ['sort' => 'nomorKamarTerbesar']) }}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Desc</a>
+                <form action="{{ route("room.dashboard.view" , ['sort' => 'nomorKamarTerbesar']) }}" method="GET">
+                  <input type="text" hidden name="sort" value="nomorKamarTerbesar" />
+                  <button type="submit" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Desc</button>
+                </form>
+
+                {{-- <a href="{{ route("room.dashboard.view" , ['sort' => 'nomorKamarTerbesar']) }}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Desc</a> --}}
               </li>
               <li>
-                <a href="{{ route("room.dashboard.view" , ['sort' => 'nomorKamarTerkecil']) }}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Asc</a>
+                <form action="{{ route("room.dashboard.view" , ['sort' => 'nomorKamarTerkecil']) }}" method="GET">
+                  <input type="text" hidden name="sort" value="nomorKamarTerkecil" />
+                  <button type="submit" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Asc</button>
+                </form>
+
+                {{-- <a href="{{ route("room.dashboard.view" , ['sort' => 'nomorKamarTerkecil']) }}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Asc</a> --}}
               </li>
               <li>
-                <a href="{{ route("room.dashboard.view" , ['sort' => 'available']) }}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Available Kamar</a>
+                <form action="{{ route("room.dashboard.view" , ['sort' => 'available']) }}" method="GET">
+                  <input type="text" hidden name="sort" value="available" />
+                  <button type="submit" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Available Kamar</button>
+                </form>
+             
+                {{-- <a href="{{ route("room.dashboard.view" , ['sort' => 'available']) }}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Available Kamar</a> --}}
               </li>
-              @foreach ($roomtypes as $item)
+              @foreach ($roomtypes as $item) 
               <li>
-                <a href="{{ route("room.dashboard.view" , ['sort' => $item -> id]) }}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{{ $item -> roomtype_name }}</a>
+                <form action="{{ route("room.dashboard.view" , ['sort' => $item -> id]) }}" method="GET">
+                  <input type="text" hidden name="sort" value="{{ $item -> id }}" />
+                  <button type="submit" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{{ $item -> roomtype_name }}</button>
+                </form>
+                {{-- <a href="{{ route("room.dashboard.view" , ['sort' => $item -> id]) }}" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{{ $item -> roomtype_name }}</a> --}}
               </li>
               @endforeach
            

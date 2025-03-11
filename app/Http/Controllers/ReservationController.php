@@ -92,6 +92,7 @@ class ReservationController extends Controller
         session::flash('success','Payment Reservation Successfully');
         return redirect() -> route('profile.dashboard.view');
     }
+
     function checkout_room(Request $request, $id) {
         $reservation = Reservation :: all() ->where('id', $id) -> first();
         

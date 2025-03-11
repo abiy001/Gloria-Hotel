@@ -10,7 +10,11 @@
     <title>Profile</title>
 </head>
 <body>
-    @if (session('update-user')) 
+  @component('fragments.toast')
+    
+  @endcomponent
+
+    @if (session('update-user') || ) 
     <script>
         Swal.fire({
     position: "top-center",
