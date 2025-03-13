@@ -39,6 +39,7 @@ class RoomController extends Controller
             'room_number' => $request -> room_number,
             'rooms_roomtype_id'=> $request -> rooms_roomtype_id,
             'room_status' => $request -> room_status,
+            'hotel_id' => $request -> hotel_id,
         ]);
 
         session::flash('success','Update Room Successfully');

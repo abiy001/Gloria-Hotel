@@ -25,7 +25,7 @@
         <div class="hidden lg:flex flex-col w-80 min-h-screen bg-opacity-90 p-6" style="background-color: {{ env('COLOR_1') }}; color: {{ env('COLOR_2') }}">
             <div class="relative flex flex-col items-center text-center p-6 rounded-lg" style="background-color: {{ env('COLOR_3') }};">
                 <img class="w-24 h-24 rounded-full border-4 shadow-lg mt-8" src="{{url('/images/hotels/hotel1.jpg')}}" alt="Profile Picture">
-                <h1 class="text-xl font-bold mt-4">Nama Lengkap</h1>
+                <h1 class="text-xl font-bold mt-4">{{ Auth::user()->name }}</h1>
                 <div class="flex space-x-3 mt-2">
                     <a href=""><box-icon name='bed' color='#ffffff'></box-icon></a>
                     <a href="/"><box-icon name='home' color='#ffffff' ></box-icon></a>

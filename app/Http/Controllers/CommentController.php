@@ -18,7 +18,7 @@ class CommentController extends Controller
         $comment -> hotel_id = $request -> hotel_id;
         $comment -> user_id = $request ->  user_id;
         $comment -> comment = $request -> comment;
-        $comment-> save();
+        $comment -> save();
 
         session::flash('success','comment successfully');
         return redirect() -> back();

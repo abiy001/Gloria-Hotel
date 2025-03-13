@@ -283,8 +283,8 @@
             <div class=" flex flex-row gap-4 w-full items-center justify-between">
                 <form class="flex flex-row gap-4 w-full items-center justify-between" enctype="multipart/form-data" action="{{ route('comment.submit',['hotel_id' => $hotels -> id  , 'user_id' => Auth() -> user() -> id]) }}" method="POST" >
                     @csrf
-                    <input type="text" hidden value="{{ Auth() -> user() -> id }}" name="user_id" />
                     <input type="text" hidden value="{{ $hotels -> id }}" name="hotel_id" />
+                    <input type="text" hidden value="{{ Auth() -> user() -> id }}" name="user_id" />
                     <input class=" w-full bg-white border border-slate-900 outline py-2 px-4" type="text" name="comment" id="" />
                     <button type="submit" class=" text-slate-50 py-2 px-4" style="background-color:{{ env('COLOR_3')}};">Kirim</button>
                 </form>

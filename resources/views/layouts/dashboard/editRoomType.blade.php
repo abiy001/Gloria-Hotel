@@ -50,7 +50,7 @@
   <main class="main mx-5 pb-4">
 
   <div class="text-2xl pt-4 pb-4 font-semibold">
-    <h1>Form Data Kamar</h1>
+    <h1>Form Edit Data Tipe Kamar</h1>
   </div>
 <hr>
           <!-- FORM -->

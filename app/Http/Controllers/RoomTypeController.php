@@ -36,7 +36,7 @@ class RoomTypeController extends Controller
 
     function update(Request $request, $id) {
         $request->validate([
-            'roomtype_name' => 'required | string | unique:room_types',
+            // 'roomtype_name' => 'required | string | unique:room_types',
             'roomtype_description' => 'required | string',
             'price_per_day' => 'required | numeric | digits_between:1,10',
         ]);
@@ -54,7 +54,7 @@ class RoomTypeController extends Controller
 
         public function destroy(RoomType $id)
         {
-            $id->delete() ;
+            $id->delete();
 
             session::flash('success','Delete Room Type Successfully');
             return redirect() -> route('roomType.dashboard.view');
