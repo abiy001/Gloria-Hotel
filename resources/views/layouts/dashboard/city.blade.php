@@ -86,7 +86,7 @@
               @method('delete')
               <button type="submit"></button>
             </form>
-        <a href="" onclick="confirmDelete(event)"  class="btn btn-danger btn-sm px-3 py-1">
+        <a href="" onclick="confirmDelete(event,{{$loop->iteration - 1}})"  class="btn btn-danger btn-sm px-3 py-1">
           <i class="bi bi-trash"></i>
 
                   </a>
@@ -125,24 +125,25 @@
   <script src="assets/js/main.js"></script>
 
   <script>
-    function confirmDelete(e) {
+      function confirmDelete(e,index) {
       e.preventDefault();
 
-      const form = document.getElementById('form_delete');
+      const form = document.querySelectorAll('#form_delete');
+      console.log(form[index]);
 
       Swal.fire({
-  title: "Are you sure?",
-  text: "You won't be able to revert this!",
-  icon: "warning",
-  showCancelButton: true,
-  confirmButtonColor: "#3085d6",
-  cancelButtonColor: "#d33",
-  confirmButtonText: "Yes, delete it!"
-}).then((result) => {
-  if (result.isConfirmed) {
-    form.submit();
-  }
-});
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        form[index].submit();
+      }
+    });
     }
   </script>
 

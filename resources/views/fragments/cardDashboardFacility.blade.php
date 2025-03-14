@@ -9,7 +9,7 @@
                 @method('delete')
                 <button type="submit"></button>
               </form>
-          <a href="" onclick="confirmDelete(event)"  class="btn btn-danger btn-sm px-3 py-1">
+          <a href="" onclick="confirmDelete(event,{{$index}})"  class="btn btn-danger btn-sm px-3 py-1">
             <i class="bi bi-trash"></i>
   
                     </a>

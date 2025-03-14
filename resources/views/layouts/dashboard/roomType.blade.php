@@ -86,8 +86,8 @@
               @method('delete')
               <button type="submit"></button>
             </form>
-        <a href="" onclick="confirmDelete(event)"  class="btn btn-danger btn-sm px-3 py-1">
-          <i class="bi bi-trash"></i>
+            <a href="" onclick="confirmDelete(event, {{$loop->iteration - 1}})"  class="btn btn-danger btn-sm px-3 py-1">
+            <i class="bi bi-trash"></i>
 
                   </a>
                   <a href="{{ route('editRoomType.dashboard.view', $item -> id) }}" class="btn btn-primary btn-sm px-3 py-1">
@@ -125,12 +125,13 @@
   <script src="assets/js/main.js"></script>
 
   <script>
-    function confirmDelete(e) {
+    function confirmDelete(e,index) {
       e.preventDefault();
 
-      const form = document.getElementById('form_delete');
+      const form = document.querySelectorAll('#form_delete');
+      console.log(form[index]);
 
-          Swal.fire({
+      Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
       icon: "warning",
@@ -140,7 +141,7 @@
       confirmButtonText: "Yes, delete it!"
     }).then((result) => {
       if (result.isConfirmed) {
-        form.submit();
+        form[index].submit();
       }
     });
     }

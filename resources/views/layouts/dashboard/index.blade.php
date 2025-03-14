@@ -127,7 +127,7 @@
                               <i class="bi bi-x"></i>
                             </a>
 
-                        <div onclick="showForm({{ $item -> id - 1  }})" id="" class="add-room-number-btn btn btn-primary btn-sm px-3 py-1">
+                        <div onclick="showForm({{ $loop->iteration - 1  }})" id="" class="add-room-number-btn btn btn-primary btn-sm px-3 py-1">
                             <i class="bi bi-check2"></i>
                         </div>
                         
