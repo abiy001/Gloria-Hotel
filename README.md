@@ -2,7 +2,7 @@
 Cara mengclone projek ini :
 
 1. Buat file .env
-2. Copy semua yang ada di file .env.example
+2. Copy semua yang ada di file .env.example, lalu paste di file .env
 3. Tambahkan 3 color ini di file .env :
        COLOR_1 = "#613D2F"
     COLOR_2 = "#FFFFFF"
